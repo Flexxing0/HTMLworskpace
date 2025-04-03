@@ -1,0 +1,35 @@
+table{
+	width: 50%;
+	border:1px black;
+	border-collapse:collapse;
+	text-align:center;
+}
+th{
+	border:2px black solid;
+	background-color:grey;
+	font-weight:bold;
+	color: black;
+}
+td{
+	vertical-align: middle;
+	border: 2px black solid;
+}
+img{
+	width:50%;
+	height:50%;
+}
+h1{
+	text-align: center;
+	font-size:14px;
+	font-style:Arial;
+	text-decoration:underline;
+	color: white;
+}
+body{
+	background-color:grey;
+	font-family:Verdana, Comic Sans;
+	text-align:left;
+}
+
+
+

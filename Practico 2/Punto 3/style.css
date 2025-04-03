@@ -1,0 +1,31 @@
+h1{
+	text-decoration: underline;
+	text-transform: capitalize;
+	text-align: center;
+	font-style: Arial;
+	font-size:14px;
+	color: white;
+}
+
+body{
+	background-color: grey;
+	font-style:Verdana, "Comic Style";
+	color: yellow;
+	text-align: left;
+	font-size:12px;
+}
+p{
+	font-size: 12px;
+	font-style: Verdana;
+	font-family: Italic, Comic Sans;
+	color: white;
+	text-decoration: none ;
+}
+
+img{
+	width: 60%;
+	height: 70%;
+}
+li{
+	text-decoration: underline;
+}

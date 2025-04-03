@@ -1,0 +1,17 @@
+body{
+	background-color: grey;
+	color: black;
+}
+
+p{
+	font-style: Verdana;
+	font-family: Arial, Geneva;
+	text-align: left;
+}
+
+img{
+	width: 40%;
+	height: 50%;
+}
+
+	
