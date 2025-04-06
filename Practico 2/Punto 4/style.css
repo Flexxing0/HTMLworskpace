@@ -3,6 +3,7 @@ table{
 	border:1px black;
 	border-collapse:collapse;
 	text-align:center;
+	background-color: white;
 }
 th{
 	border:2px black solid;
@@ -17,7 +18,15 @@ td{
 img{
 	width:50%;
 	height:50%;
+	background-color: transparent;
+	mix-blend-mode: multiply;
 }
+
+img:hover{
+	width:60%;
+}
+
+
 h1{
 	text-align: center;
 	font-size:14px;
@@ -26,10 +35,22 @@ h1{
 	color: white;
 }
 body{
-	background-color:grey;
+	background-image: linear-gradient(to bottom, #ff7e5f, #feb47b);
 	font-family:Verdana, Comic Sans;
-	text-align:left;
+	text-align:center;
 }
+article{
+	width: 100%;
+	justify-items: center;
+}
+h2{
+	  background-image: linear-gradient(to bottom, red, blue);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+
 
 
 
