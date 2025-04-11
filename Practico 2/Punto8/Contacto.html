@@ -1,25 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head><title>Contacto </title></head>
-    <body>
-        <header><h1>Formulario</h1></header>
-        <section>
-            <h2>Informacion</h2>
-            <article>
-                <h3>Si quieres recibir la mejor informacion, registrate:</h3>
-                <form id="1" name="form" method="get" action=" nuevousuario@empresa.com.ar">
-                    <fieldset id="1" name="campos">
-                        Nombre: 
-                        <input name="nomUsuario" type="text" id="idnomUsuario" size="15" maxlength="15"
-                        autofocus="autofocus" placeholder="M&aacute;ximo 15 letras"><br>
-                        Primer Apellido:
-                        <input name="primApe" type="text" id="idprimApe" size="30" maxlength="15"
-                        autofocus="autofocus" placeholder="M&aacute;ximo 15 letras"><br>
 
+<head>
+    <title>Contacto </title>
+</head>
+<link rel="stylesheet" href="styleContactos.css">
 
-                    </fieldset>
-                </form>
-            </article>
-        </section>
-    </body>
+<body>
+    <header>
+        <h1>Formulario</h1>
+    </header>
+    <section>
+        <h2>Informacion</h2>
+        <article>
+            <h3>Si quieres recibir la mejor informacion, registrate:</h3>
+            <form id="1" name="form" method="get" action=" nuevousuario@empresa.com.ar">
+                <fieldset id="1" name="campos">
+                    <div class="form-group">
+                        <label for="nombre"> Nombre: </label>
+                        <div class="inputs">
+                            <input name="nomUsuario" type="text" id="idnomUsuario" size="15" maxlength="15"
+                                autofocus="autofocus" placeholder="M&aacute;ximo 15 letras">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="primerape">Primer apellido:</label>
+                        <div class="inputs">
+                            <input name="primApe" type="text" id="idprimApe" size="30" maxlength="15"
+                                autofocus="autofocus" placeholder="M&aacute;ximo 15 letras">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="seguApe">Segundo Apellido:</label>
+                        <div class="inputs">
+                            <input name="segApe" type="text" id="idsegApe" size="30" maxlength="15"
+                                autofocus="autofocus" placeholder="M&aacute;ximo 15 letras">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Direccion: </label>
+                        <div class="inputs">
+                            <input name="direccion" type="text" id="idDireccion" size="15" maxlength="15"
+                                autofocus="autofocus" placeholder="M&aacute;ximo 15 letras" maxlength="15">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="numero">Codigo Postal:</label>
+                        <div class="inputs">
+                            <input name="numero" type="number" id="idNumero" min="0000" max="9999">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono: </label>
+                        <div class="inputs">
+                        <input name="Telefono" type="number" id="idTelefono" min="000000000" max="999999999">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email: </label>
+                        <div class="inputs">
+                            <input name="Email" type="email" id="idEmail" size="30"
+                                placeholder="M&aacute;ximo 30 caracteres" maxlength="30">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confEmail">Confirmar Email: </label>
+                        <div class="inputs">
+                            <input name="Email" type="email" id="idEmail" size="30"
+                                placeholder="M&aacute;ximo 30 caracteres" maxlength="30">
+                        </div>
+                    </div>
+                    <input name="reset" type="reset" id="idReset" value="Reset">
+                    <input name="Boton" type="submit" id="idBoton" value="Enviar">
+                </fieldset>
+            </form>
+        </article>
+    </section>
+</body>
+
 </html>
