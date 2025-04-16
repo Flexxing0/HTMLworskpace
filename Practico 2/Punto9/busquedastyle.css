@@ -1,0 +1,121 @@
+body{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+fieldset{
+    display:block;
+    flex:1;
+}
+
+h3{
+    text-align:center;
+
+}
+
+.formulario1{
+    display:flex;
+    flex-direction:row;
+    gap:30px;
+    padding:20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin:20px;
+}
+
+.formuobra{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    gap:10px;
+    margin:10px;
+}
+
+.inputobra{
+    display:flex;
+    width:100%;
+    text-align:left;
+}
+
+.formuobra label{
+    flex:1;
+    text-align: right;
+}
+
+.formuobra input{
+    padding:6px;
+    font-size:14px;
+}
+
+.formtipo{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    gap:10px;
+    margin:10px;
+}
+
+.checkbo1{
+    display:flex;
+    width:10%;
+}
+
+.formtipo label{
+    text-align:left;
+    width:90%;
+}
+
+.formdispo{
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:10px;
+}
+
+.radiobut{
+    display:flex;
+    width:10%;
+}
+
+.formdispo label{
+    text-align:left;
+    width:90%;
+}
+
+.formestilo{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin:10px;
+}
+
+.opcion{
+    display:flex;
+    flex:1;
+}
+
+.formulario2{
+    display:flex;
+    flex-direction:row;
+    align-items:start;
+    justify-content:left;
+    gap:10px;
+    margin:10px;
+    padding:10px;
+}

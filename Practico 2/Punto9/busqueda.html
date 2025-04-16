@@ -1,0 +1,97 @@
+<!DOCTYPE>
+<html lang="es">
+
+<head>
+    <title> busqueda</title>
+    <link rel="stylesheet" href="busquedastyle.css">
+</head>
+
+<body>
+    <header>
+        <h1> Busqueda</h1>
+    </header>
+    <section>
+        <div id="catalogo">
+            <form id="1" name="form" method="post" action="procesa.php">
+                <fieldset id="2" name="campos">
+                    <h2> Catalogo de Arte </h2>
+                    <div class="formulario1">
+                        <div class="obracuadro">
+                            <h3>Obra</h3>
+                            <div class="formuobra">
+                                <label for="formuobr">Titulo</label>
+                                <div class="inputobra">
+                                    <input name="titulo" type="text" id="idtitulo" size="15" maxlength="30"
+                                        autofocus="autofocus">
+                                </div>
+                            </div>
+                            <div class="formuobra">
+                                <label for="formuobr">Autor</label>
+                                <div class="inputobra">
+                                    <input name="autor" type="text" id="idautor" size="10" maxlength="20"
+                                        autofocus="autofocus">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tipocuadro">
+                            <h3>Tipo</h3>
+                            <div class="formtipo">
+                                <div class="checkbo1">
+                                    <input type="checkbox" id="idescritura" name="escritura" value="Escultura">
+                                </div>
+                                <label for="formtipo"> Escultura</label>
+                            </div>
+                            <div class="formtipo">
+                                <div class="checkbo1">
+                                    <input type="checkbox" id="idarqui" name="arquitectura" value="Arquitectura">
+                                </div>
+                                <label for="formtipo">Arquitectura </label>
+                            </div>
+                            <div class="formtipo">
+                                <div class="checkbo1">
+                                    <input type="checkbox" id="idpintura" name="pintura" value="Pintura">
+                                </div>
+                                <label for="tipo">Pintura</label>
+                            </div>
+                        </div>
+                        <div class="dispoibilidadcuadro">
+                            <h3>Disponibilidad</h3>
+                            <div class="formdispo">
+                                <div class="radiobut">
+                                    <input type="radio" id="idmuseo" name="museo" value="Museo/Acceso Publico">
+                                </div>
+                                <label for="formdispo">Museo/Acceso Publico</label>
+                            </div>
+                            <div class="formdispo">
+                                <div class="radiobut">
+                                    <input type="radio" id="idcoleccion" name="coleccionpriv" value="coleccionpriv">
+                                </div>
+                                <label for="formdispo">Acceso Privado</label>
+                            </div>
+                        </div>
+                        <div class="estilocuadro">
+                            <h3>Estilo</h3>
+                            <div class="formestilo">
+                                <div class="opcion">
+                                    <select name="estilos" size="2" multiple id="idestilos">
+                                        <option value="Clasico" selected>Clasico</option>
+                                        <option value="Moderno">Moderno</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formulario2">
+                        <label for="form2"><p>Hagame saber sus sugerencias:</p></label>
+                        <div class="sugerencias">
+                        <textarea name="sugUsuario" placeholder="Me gustaria indicar que" id="idsug" rows="3" cols="40"></textarea>
+                        </div>
+                    </div>
+                    <input type="submit" name="Subir" value="Enviar">
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
