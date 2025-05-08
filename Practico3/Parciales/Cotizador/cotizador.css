@@ -1,0 +1,21 @@
+
+
+#formu1{
+    display:grid;
+    grid-template-columns:  max-content;
+    height:max-content;
+    align-items: left;
+    justify-content: left;
+}
+
+#formu1 label{
+   
+}
+
+.acuario{
+    display: none;
+}
+
+.otros{
+    display: none;
+}
