@@ -1,21 +1,25 @@
 var opcionesSeleccionadas = [];
+var opAcuario = 0, opOtro = 0;
 
-function chequeaSelecciones(){
-    var opciones = document.getElementsByName("opcion");
-    opciones.forEach(element=>{
-        if(element.check){
+
+function chequeaOpciones() {
+    const opciones = document.getElementsByName('opcion');
+    opciones.forEach(element => {
+        console.log(element.checked);
+        if (element.checked) {
             opcionesSeleccionadas.push(element);
-            console.log(element.value);
+            console.log(element.checked);
         }
     })
 }
 
-
-function haceAlgo(){
-chequeaSelecciones();
-for(i=0;i<opcionesSeleccionadas.length;i++){
-    if(opcionesSeleccionadas[i] === "Acuario"){
-        document.getElementById('acuario').style.display = 'block;'
+function haceAlgo() {
+    chequeaOpciones();
+    for (i = 0; i < opcionesSeleccionadas.length; i++) {
+        if (opcionesSeleccionadas[i].value === "Acuario") {
+            document.getElementById("acuario").style.display = 'block';
+        }else{
+            document.getElementById("otros").style.display = 'block';
+        }
     }
-}
 }

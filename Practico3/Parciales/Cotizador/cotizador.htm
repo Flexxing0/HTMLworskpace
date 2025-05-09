@@ -17,44 +17,46 @@
 
             <form id="formu1" name="formulario" method="post" action="">
                 <fieldset>
-                <legend>Ingrese el servicio</legend>
-                <label for="idacuario">Acuario</label>
-                <input type="checkbox" id="idacuario" name="opcion" value="Acuario"> 
-                <label for="idbanio">Bano</label>
-                <input type="checkbox" id="idbanio" name="opcion" value="Banio"> 
-                <label for="idpelu">Peluqueria</label>
-                <input type="checkbox" id="idpelu" name="opcion" value="Peluqueria"> 
-                <label for="idvacu">Vacunacion</label>
-                <input type="checkbox" id="idvacu" name="opcion" value="Vacunacion">
-                <label for="idconsu">Consulta</label>
-                <input type="checkbox" id="idconsu" name="opcion" value="Consulta"> 
-                <button type="button" id="idconfirma" name="confirma" value="Confirma" onClick="haceAlgo();"> Confirma</button>
-            </fieldset>
-
+                    <legend>Seleccione uno o mas de un servicio</legend>
+                    <label for="idacuario">Acuario</label>
+                    <input type="checkbox" id="idacuario" name="opcion" value="Acuario">
+                    <label for="idbanio">Bano</label>
+                    <input type="checkbox" id="idbanio" name="opcion" value="Banio">
+                    <label for="idpelu">Peluqueria</label>
+                    <input type="checkbox" id="idpelu" name="opcion" value="Peluqueria">
+                    <label for="idvacu">Vacunacion</label>
+                    <input type="checkbox" id="idvacu" name="opcion" value="Vacunacion">
+                    <label for="idconsu">Consulta</label>
+                    <input type="checkbox" id="idconsu" name="opcion" value="Consulta">
+                    <button type="button" id="idconfirma" name="confirma" value="Confirma" onClick="haceAlgo();">
+                        Confirma</button>
+                </fieldset>
             </form>
-            <div class="acuario">
-                <form id="formu1.1" name="formularioAC" method="post" action="">
-                    Ingrese las dimensiones
-                <div class="dimensiones">
-                    <label for="idalto">alto</label>
-                    <input type="number" id="idalto" name="alto">
-                    <label for="idancho">ancho</label>
-                    <input type="number" id="idancho" name="ancho">
-                </div>
-                </form>
+            <form id="formu1.1" name="formularioAC" method="post" action="">
+                <div id="acuario">
+                    <fieldset>
+                        <legend>Ingrese las dimensiones de la pecera</legend>
+                        
+                            <label for="idalto">Alto</label>
+                            <input type="number" id="idalto" name="alto">
+                            <label for="idancho">Ancho</label>
+                            <input type="number" id="idancho" name="ancho">
+                        
+                    </fieldset>
             </div>
-            <div class="otros">
-                <form id="formu1.2" name="formularioOtros" method="post" action="">
-                    Ingrese los animales
+            <div id="otros">
+                <fieldset>
+                    <legend>Ingrese los animales</legend>
                     <div class="otros-animales">
                         <label for="idcantidad">Cantidad</label>
-                        <input type="number" id="idcantidad" name="cantidad" >
+                        <input type="number" id="idcantidad" name="cantidad">
                         <label for="idraza">Raza</label>
-                        <input type="text" id="idraza" name="raza" >
+                        <input type="text" id="idraza" name="raza">
                         <label for="idpeso">Peso aproximado</label>
                         <input type="number" id="idpeso" name="peso">
                     </div>
-                </form>
+                </fieldset>
+            </form>
             </div>
         </article>
     </section>
