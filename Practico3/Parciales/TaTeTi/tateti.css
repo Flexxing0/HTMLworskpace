@@ -1,0 +1,50 @@
+body{
+    font-family:sans-serif, 'Courier New', Courier, monospace;
+    display: grid;
+    place-items: center;
+    gap: 1em;
+    min-width: 320px;
+}
+
+h1{
+    font-style: monospace;
+}
+
+h2{
+    
+}
+
+#cuadro{
+    display:grid;
+    grid-template-columns: repeat(3,100px);
+    margin: 10px;
+    min-width: 300px;
+    height: 320px;
+    width: 320px;
+}
+
+#cuadro button{
+    font-size: 20px;
+    border-radius: .2em;
+    cursor: pointer;
+    padding: 40px 40px;
+    max-block-size: 100%;
+    max-width: 100px;
+}
+
+#cuadro button:hover {
+  background-color: #e0e9f3;
+  transform: scale(1);
+}
+
+#seccion-informacion{
+    display: grid;
+    grid-template-columns: repeat(2,20vw);
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#turno-jugador{
+    padding-right: 2em;
+}
