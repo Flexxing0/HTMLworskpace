@@ -1,0 +1,61 @@
+*{
+    
+    font-family: sans-serif;
+}
+
+body{
+    
+    background-color: aqua;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+#seleccion{
+    display:flex;
+    flex-direction: row;
+    padding: 2em;
+    gap: 1lh;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#seleccion button{
+    min-width: 40%;
+    margin-top: .5lh;
+}
+
+#inicia{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding: 2em;
+    place-items: center;
+}
+
+#partida1-1{
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2,50vw);
+    place-items: center;
+    gap: .5em;
+}
+
+#partida1-1 div{
+    max-height: 70%;
+}
+
+#idjugar{
+    grid-column: span 2;
+}
+
+#partida1-2{
+    grid-column: span 2;
+    text-align: left;
+}
+
+.numero-generado{
+    
+}
