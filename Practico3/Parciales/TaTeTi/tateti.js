@@ -23,7 +23,8 @@ function cargaMatriz(indice) { //carga la matriz a medida que se aprietan botone
             cuenta++
             if(cuenta===indice){
             matriz[i][j] = turnos[turnoNum];
-            console.log(matriz[i][j]) // valor inicial
+            console.log(matriz[i][j])
+            console.log(matriz) // valor inicial
             }
         }
     }

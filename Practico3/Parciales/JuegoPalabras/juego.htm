@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>Juego de palabras</title>
     <script type="text/javascript" src="juego.js"></script>
     <link rel="stylesheet" href="juego.css">
 </head>
 <body>
-    <section>
+    <section id="contenedorPrincipal">
+        <article id="parte-principal" style="display:block;">
         <select name="longitud" id="idlongitud">
             <option value="7" selected="selected">Longitud 7</option>
             <option value="8">Longitud 8</option>
             <option value="10">Longitud 10</option>
         </select>
+        <div id="botones">
         <button id="generapalabra" name="boton" value="Genera" onClick="botonComenzar();">Generar palabra</button>
-        <button id="generapista" name="boton" value="Genera" onClick="generaPista();">Pista</button>
-        <div id="contenedor-palabra-vacia"></div>
-        <div id="contenedor-letras-ingresadas"></div>
-        <div id="mensaje-decision"></div>
+        <!--<button id="generapista" name="boton" value="Genera" onClick="generaPista();">Pista</button>-->
+        </div>
+    </article>
+        <article id="contenedor-palabra-vacia"></article>
+        <article id="contenedor-letras-ingresadas"></article>
+        <article id="mensaje-decision"></article>
     </section>
 
     

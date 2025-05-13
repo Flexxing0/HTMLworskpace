@@ -79,6 +79,21 @@ function creaContenedorPalabra(){// crea el contenedor donde se colocara la casi
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////Seccion creacion div////////////////////////////////////////////////////////////////////////
+function creaBotonGeneraPista(){
+    var botonViejo = document.getElementById("generapista");
+    if(botonViejo){
+        padre = botonViejo.parentNode;
+        padre.removeChild(botonViejo);
+    }
+    var nuevoBoton = document.createElement("button");
+    nuevoBoton.setAttribute("id","generapista");
+    nuevoBoton.setAttribute("value","Genera");
+    nuevoBoton.setAttribute("name","boton");
+    nuevoBoton.setAttribute("onclick","generaPista();");
+    nuevoBoton.innerHTML = "Pista";
+    return nuevoBoton;
+}
+
 function creaPistaGanadasTexto(){
     var pista = document.getElementById("contador-pista");
     if (pista){
@@ -109,6 +124,8 @@ function creaLetrasAdivinadasTexto(){
 
 function creaCajaTexto(){
     var caja = document.getElementById("caja");
+    var partePrincipal = document.getElementById("parte-principal");
+    partePrincipal.style.display = "none";
     if (caja){
         padre = caja.parentNode;
         padre.removeChild(caja);
@@ -148,12 +165,13 @@ function actualizaPistasYLetras(){//contenedor donde se ingresan las letras y cu
     var contenedor = document.getElementById("contenedor-letras-ingresadas");
     contenedor.appendChild(creaPistaGanadasTexto());
     contenedor.appendChild(creaLetrasAdivinadasTexto());
+    contenedor.appendChild(creaBotonGeneraPista());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 function escuchaIngreso(){
     var textoIngresado = document.getElementById("caja");
-    letra = textoIngresado.value;
+    letra = textoIngresado.value.toLowerCase();
     if(letra===''){
         return;
     }

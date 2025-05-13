@@ -1,0 +1,34 @@
+#contenedorPrincipal{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding:2em;
+}
+
+section{
+    background-color: rgb(231, 230, 171);
+
+}
+
+#parte-principal{
+    
+}
+
+#idlongitud{
+ flex-basis: 10%;
+ margin-left: 1.1lh;
+ order: 0;
+ 
+}
+
+#botones{
+    order:1;
+    flex: 0 0 100%;
+    margin-left: 1lh;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
