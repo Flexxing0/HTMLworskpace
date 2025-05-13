@@ -3,6 +3,7 @@ const longitud8 = ["ambiente", "historia", "personas"];
 const longitud10 = ["calendario", "transporte", "desarrollo"];
 var letrasadivinadas = 0; //contador letras adivinadas
 var letraspistas = 0; //contador pistas obtenidas
+var pistasmostradas = 0;
 var palabraGenerada , longitudgenerada; //longitud y palabras generadas
 var palabraVacia = []; //se usa para ir llenando de a poco
 var palabraPista = []; //se usa para ir eliminando de a poco e ir colocando en palabra vacia
@@ -43,8 +44,10 @@ function generaPalabra() { //genera la palabra segun la longitud seleccionada, U
 function llenaPalabraPista(){
     console.log(longitud7[0].split('').length);
     console.log(palabraGenerada);
-    for(i=0;i<palabraGenerada;i++){
-        palabraPista[i] = palabraGenerada[i];
+    var letra;
+    for(i=0;i<palabraGenerada.length;i++){
+        letra = palabraGenerada[i];
+        palabraPista.push(letra);
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,8 +195,8 @@ function incrementaPistasGanadas(){
     letraspistas++;
 }
 
-function decrementaPistasGanadas(){
-    letraspistas--;
+function incrementaPistasMostradas(){
+    pistasmostradas;
 }
 
 function incrementaLetrasAdivinadas(){
@@ -205,8 +208,11 @@ function generaPista() {
     if(palabraPista.length>0 && letraspistas>0){
         letra = palabraPista.shift();
         suprimeLetra(letra);//saco las letras coincidente de palabraPista
-        decrementaPistasGanadas();
+        incrementaPistasMostradas();
         llenaPalabraVacia(letra,analizaLetra(letra));
+        actualizaPistasYLetras();
+        creaContenedorPalabra();
+        analizaLetrasAdivinadas();
         
     }else{
         alert("No hay pistas suficientes");
@@ -217,7 +223,7 @@ function suprimeLetra(letra){
     var posiciones = analizaLetra(letra);
     var letrasEliminadas = [];
     for(i=0;i<posiciones.length;i++){
-        letrasEliminadas[i] = palabraPista.splice(posiciones[i],posiciones[i]);
+        letrasEliminadas.push(palabraPista.splice(posiciones[i],posiciones[i]));
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
