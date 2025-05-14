@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Document</title>
+    <link rel="stylesheete" href="test.css">
+    <script type="text/javascript" src="test.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Busqueda laboral</h1>
+    </header>
+    <section>
+        <button id="idbtn-test" name="btntest" value="test" onClick="comenzarTest();" style="display:block">Comenzar
+            Test</button>
+        <article id="seccion-ingreso-datos" style="display:none">
+            <h2>Ingrese sus datos</h2>
+            <label for="idapeynom">Apellido y Nombre</label>
+            <input id="idapeynom" type="text" name="input" size="10" maxlength="10">
+            <label for="idedad">Edad</label>
+            <input id="idedad" type="text" name="input" size="10" maxlength="10">
+            <label for="iddomicilio">Domicilio</label>
+            <input id="iddomicilio" type="text" name="input" size="10" maxlength="10">
+            <button id="id-enviar-ingreso" name="btnsesion" value="sesion" onclick="enviarSesion();">Enviar datos</button>
+        </article>
+        <article id="seccion-test" style="display:none">
+            <form id="formulario1" name="test-formulario" action="" method="POST">
+                <fieldset id="idpregunta1" name="pregunta1">
+                    <p>¿Que ingredientes lleva un desayuno simple?</p>
+                    <input name="Cafe-o-Te" id="idcafeote" type="checkbox" value="3">
+                    <label for="idcafeote">Cafe o Te</label>
+                    <input name="leche" id="idleche" type="checkbox" value="2">
+                    <label for="idleche">Leche</label>
+                    <input name="tostadas" id="idtostadas" type="checkbox" value="2">
+                    <label for="idtostadas">Tostadas</label>
+                    <input name="limon" id="idlimon" type="checkbox" value="0">
+                    <label for="idlimon">Limon/label>
+                        <input name="manteca" id="idmanteca" type="checkbox" value="1">
+                        <label for="idmanteca">Manteca</label>
+                        <input name="medialunas" id="idmedialunas" type="checkbox" value="2">
+                        <label for="idmedialunas">Media lunas</label>
+                        <input name="ajo" id="idajo" type="checkbox" value="-1">
+                        <label for="idajo">Ajo</label>
+                </fieldset>
+                <fieldset id="idpregunta2" name="pregunta2">
+                    <p>¿Que fruta sale de la uva?</p>
+                    <input name="anacardo" id="idanacardo" type="radio" value="0">
+                    <label for="idanacardo">Anacardo</label>
+                    <input name="pasas" id="idpasas" type="radio" value="10">
+                    <label for="idpasas">Pasas</label>
+                    <input name="ciruelas" id="idciruelas" type="radio" value="0">
+                    <label for="idciruelas">Ciruelas</label>
+                </fieldset>
+                <fieldset id="idpregunta3" name="pregunta3">
+                    <p>¿Para que sirve el caldo corto?</p>
+                    <input name="pocacoccion" id="idpocacoccion" type="radio" value="10">
+                    <label for="idpocacoccion">Para alimentos que necesitan poca coccion</label>
+                    <input name="grasacarne" id="idgrasacarne" type="radio" value="0">
+                    <label for="idgrasacarne">Para quitar la grasa de la carne</label>
+                </fieldset>
+                <fieldset id="idpregunta4" name="pregunta4">
+                    <p>¿Cual es la temperatura maxima para freir?</p>
+                    <input name="180" id="id180" type="checkbox" value="8">
+                    <label for="id180">180 °C</label>
+                    <input name="200" id="id200" type="checkbox" value="0">
+                    <label for="id200">200 °C</label>
+                    <input name="170" id="id170" type="checkbox" value="2">
+                    <label for="id170">170 °C</label>
+                </fieldset>
+                <fieldset id="idpregunta5" name="pregunta5">
+                    <p>¿Como se llama el pan sin levadura?</p>
+                    <input name="panb" id="idpanblanco" type="checkbox" value="0">
+                    <label for="idpanblanco">Pan Blanco</label>
+                    <input name="pang" id="idgerminado" type="checkbox" value="0">
+                    <label for="idgerminado">Pan Germinado</label>
+                    <input name="acimo" id="idacimo" type="checkbox" value="8">
+                    <label for="idacimo">Acimo</label>
+                </fieldset>
+                <button id="idenviaresu" name="enviaresu" type="button" onclick="muestraResultados();">Enviar</button>
+            </form>
+            <div id="contenedor">
+
+            </div>
+        </article>
+    </section>
+</body>
+
+</html>
