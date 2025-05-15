@@ -9,6 +9,8 @@ var palabraVacia = []; //se usa para ir llenando de a poco
 var palabraPista = []; //se usa para ir eliminando de a poco e ir colocando en palabra vacia
 var jugador = "jugador1";
 var continua = true;
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////genera palabra/////////////////////////////////////////////////////////////////////////////
 function obtieneLong() {//obtiene long del combobox
@@ -58,6 +60,12 @@ function botonComenzar(){
     creaContenedorPalabra();
     creaCajaTextoFinal();
     actualizaPistasYLetras();
+    if(document.getElementById("contenedor-palabra-vacia").classList.contains("oculto")){
+        muestraElemento("contenedor-palabra-vacia");
+        muestraElemento("contenedor-letras-ingresadas");
+        muestraElemento("mensaje-decision");
+
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////creacion casilla adivina palabra///////////////////////////////////////////////////////////////////////////////
@@ -124,8 +132,7 @@ function creaLetrasAdivinadasTexto(){
 
 function creaCajaTexto(){
     var caja = document.getElementById("caja");
-    var partePrincipal = document.getElementById("parte-principal");
-    partePrincipal.style.display = "none";
+    ocultaElemento("parte-principal");
     if (caja){
         padre = caja.parentNode;
         padre.removeChild(caja);
@@ -166,6 +173,8 @@ function actualizaPistasYLetras(){//contenedor donde se ingresan las letras y cu
     contenedor.appendChild(creaPistaGanadasTexto());
     contenedor.appendChild(creaLetrasAdivinadasTexto());
     contenedor.appendChild(creaBotonGeneraPista());
+    contenedor.appendChild(creaBotonABNDoVolver("abandonar","botonAbandonar","Abandonar"));
+    contenedor.appendChild(creaBotonABNDoVolver("volver","botonVolverJugar","Volver a jugar"));
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -294,3 +303,64 @@ function juegoTerminado(decision){
     mensaje.appendChild(creaParrafoMensaje(decision));
 }
 
+function ocultaElemento(elemento){
+    var e = document.getElementById(elemento);
+    console.log(e.id);
+    
+    e.classList.add("oculto");
+    console.log(e.classList);
+}
+
+function muestraElemento(elemento){
+    var e = document.getElementById(elemento);
+    e.classList.toggle("oculto");
+}
+
+function enviarSesion(){
+    var padre = document.getElementById("seccion-ingreso-datos");
+    Array.from(padre.children).forEach(hijo => {
+        if(hijo.tagName === 'INPUT'){
+            localStorage.setItem(hijo.id,hijo.value);
+        }
+    })
+    ocultaElemento("seccion-ingreso-datos");
+    muestraElemento("parte-principal");
+}
+
+function creaBotonABNDoVolver(opcion,funcion,texto){
+    var btnviejo = document.getElementById("btn-"+opcion);
+    if (btnviejo){
+        padre = btnviejo.parentNode;
+        padre.removeChild(btnviejo);
+    }
+    var btnnuevo = document.createElement("button");
+    btnnuevo.setAttribute("id","btn-"+opcion);
+    btnnuevo.setAttribute("name",opcion);
+    btnnuevo.setAttribute("value","op"+opcion);
+    btnnuevo.setAttribute("onclick",funcion + "();");
+    btnnuevo.innerHTML = texto;
+    return btnnuevo;
+}
+
+function botonAbandonar(){
+ocultaElemento("contenedor-palabra-vacia");
+ocultaElemento("contenedor-letras-ingresadas");
+ocultaElemento("mensaje-decision");
+muestraElemento("seccion-ingreso-datos");
+reiniciaValores();
+}
+
+function reiniciaValores(){
+    palabraVacia = [];
+    palabraPista = [];
+    letrasadivinadas = 0; 
+    letraspistas = 0; 
+    pistasmostradas = 0;
+}
+function botonVolverJugar(){
+    ocultaElemento("contenedor-palabra-vacia");
+    ocultaElemento("contenedor-letras-ingresadas");
+    ocultaElemento("mensaje-decision");
+    reiniciaValores();
+    muestraElemento("parte-principal");
+}

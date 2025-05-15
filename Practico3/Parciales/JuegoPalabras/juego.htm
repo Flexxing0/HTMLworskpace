@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Juego de palabras</title>
     <script type="text/javascript" src="juego.js"></script>
     <link rel="stylesheet" href="juego.css">
 </head>
+
 <body>
     <section id="contenedorPrincipal">
-        <article id="parte-principal" style="display:block;">
-        <select name="longitud" id="idlongitud">
-            <option value="7" selected="selected">Longitud 7</option>
-            <option value="8">Longitud 8</option>
-            <option value="10">Longitud 10</option>
-        </select>
-        <div id="botones">
-        <button id="generapalabra" name="boton" value="Genera" onClick="botonComenzar();">Generar palabra</button>
-        <!--<button id="generapista" name="boton" value="Genera" onClick="generaPista();">Pista</button>-->
-        </div>
-    </article>
+        <article id="seccion-ingreso-datos" >
+            <h2>Ingrese sus datos</h2>
+            <label for="idapeynom">Apellido y Nombre</label>
+            <input id="idapeynom" type="text" name="input" size="10" maxlength="10">
+            <label for="idedad">Edad</label>
+            <input id="idedad" type="text" name="input" size="10" maxlength="10">
+            <label for="iddomicilio">Domicilio</label>
+            <input id="iddomicilio" type="text" name="input" size="10" maxlength="10">
+            <button id="id-enviar-ingreso" name="btnsesion" value="sesion" onclick="enviarSesion();">Enviar
+                datos</button>
+        </article>
+        <article id="parte-principal" class="oculto">
+            <select name="longitud" id="idlongitud">
+                <option value="7" selected="selected">Longitud 7</option>
+                <option value="8">Longitud 8</option>
+                <option value="10">Longitud 10</option>
+            </select>
+            <div id="botones">
+                <button id="generapalabra" name="boton" value="Genera" onClick="botonComenzar();">Generar
+                    palabra</button>
+                <!--<button id="generapista" name="boton" value="Genera" onClick="generaPista();">Pista</button>-->
+            </div>
+        </article>
         <article id="contenedor-palabra-vacia"></article>
         <article id="contenedor-letras-ingresadas"></article>
         <article id="mensaje-decision"></article>
     </section>
 
-    
+
 </body>
+
 </html>
