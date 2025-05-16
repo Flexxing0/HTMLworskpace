@@ -1,0 +1,163 @@
+/* DISPLAY BLOCK */
+/* El elemento se comporta como un bloque: ocupa todo el ancho disponible */
+.element-block {
+  display: block;
+}
+
+/* DISPLAY INLINE */
+/* El elemento se comporta como inline: no comienza en una nueva línea y solo ocupa el ancho necesario */
+.element-inline {
+  display: inline;
+}
+
+/* DISPLAY INLINE-BLOCK */
+/* Combinación: se comporta como inline, pero permite definir ancho y alto */
+.element-inline-block {
+  display: inline-block;
+}
+
+/* DISPLAY NONE */
+/* Oculta el elemento completamente (no ocupa espacio en el flujo) */
+.element-none {
+  display: none;
+}
+
+/* DISPLAY FLEX */
+/* Activa un contenedor flexible (flexbox), para distribuir elementos hijos de forma dinámica */
+.element-flex {
+  display: flex;
+}
+
+/* DISPLAY INLINE-FLEX */
+/* Similar a flex, pero el contenedor se comporta como un elemento inline */
+.element-inline-flex {
+  display: inline-flex;
+}
+
+/* DISPLAY GRID */
+/* Convierte al contenedor en una cuadrícula para distribuir elementos hijos */
+.element-grid {
+  display: grid;
+}
+
+/* DISPLAY INLINE-GRID */
+/* Igual que grid, pero el contenedor se comporta como inline */
+.element-inline-grid {
+  display: inline-grid;
+}
+
+/* DISPLAY FLOW-ROOT */
+/* Crea un nuevo contexto de bloque con limpieza automática (clear fix) */
+.element-flow-root {
+  display: flow-root;
+}
+
+/* DISPLAY CONTENTS */
+/* Elimina el contenedor visualmente, pero mantiene sus hijos en el flujo del documento */
+.element-contents {
+  display: contents;
+}
+
+/* DISPLAY TABLE */
+/* Hace que el elemento se comporte como una tabla (similar a <table>) */
+.element-table {
+  display: table;
+}
+
+/* DISPLAY TABLE-ROW */
+/* Hace que el elemento se comporte como una fila de tabla (similar a <tr>) */
+.element-table-row {
+  display: table-row;
+}
+
+/* DISPLAY TABLE-CELL */
+/* Hace que el elemento se comporte como una celda de tabla (similar a <td>) */
+.element-table-cell {
+  display: table-cell;
+}
+
+/* DISPLAY LIST-ITEM */
+/* Hace que el elemento se comporte como un ítem de lista (similar a <li>) */
+.element-list-item {
+  display: list-item;
+}
+
+/* DISPLAY RUN-IN (obsoleto en la mayoría de navegadores) */
+/* El comportamiento varía según el contexto; poco soportado */
+.element-run-in {
+  display: run-in;
+}
+/* display: block hace que el elemento: */
+.element {
+  display: block; /* Ocupa todo el ancho disponible, inicia en nueva línea */
+  width: 100%;    /* Por defecto ocupa el 100% del contenedor (si no se especifica otro valor) */
+  height: auto;   /* La altura se adapta al contenido */
+}
+.container {
+  flex-direction: row;         /* (default) Elementos en fila, de izquierda a derecha */
+  flex-direction: row-reverse;/* Fila de derecha a izquierda */
+  flex-direction: column;     /* Columna, de arriba hacia abajo */
+  flex-direction: column-reverse; /* Columna, de abajo hacia arriba */
+}
+.container {
+  justify-content: flex-start;   /* (default) Al inicio del eje principal */
+  justify-content: flex-end;     /* Al final del eje principal */
+  justify-content: center;       /* Centrado */
+  justify-content: space-between;/* Espacio igual entre elementos */
+  justify-content: space-around; /* Espacio igual alrededor */
+  justify-content: space-evenly; /* Espacio igual entre y alrededor */
+}
+.container {
+  align-items: stretch;    /* (default) Ocupan toda la altura del contenedor */
+  align-items: flex-start; /* Al inicio del eje cruzado */
+  align-items: flex-end;   /* Al final del eje cruzado */
+  align-items: center;     /* Centrado vertical */
+  align-items: baseline;   /* Alineados con la línea base del texto */
+}
+.container {
+  flex-wrap: nowrap;     /* (default) Todos en una sola línea */
+  flex-wrap: wrap;       /* Salta a nueva línea si no hay espacio */
+  flex-wrap: wrap-reverse; /* Igual que wrap, pero en dirección inversa */
+}
+.container {
+  align-content: flex-start;
+  align-content: flex-end;
+  align-content: center;
+  align-content: space-between;
+  align-content: space-around;
+  align-content: space-evenly;
+  align-content: stretch; /* (default) Las líneas se estiran para llenar el espacio */
+}
+.container {
+  grid-template-columns: 100px 1fr 2fr; /* 3 columnas: fija, flexible, más flexible */
+  grid-template-rows: auto 200px;       /* 2 filas: auto y fija */
+}
+.container {
+  justify-items: start;   /* A la izquierda de cada celda */
+  justify-items: end;     /* A la derecha */
+  justify-items: center;  /* Centrado */
+  justify-items: stretch; /* (default) Ocupa todo el ancho disponible */
+}
+.container {
+  align-items: start;
+  align-items: end;
+  align-items: center;
+  align-items: stretch; /* (default) */
+}
+.container {
+  justify-content: start;
+  justify-content: end;
+  justify-content: center;
+  justify-content: space-between;
+  justify-content: space-around;
+  justify-content: space-evenly;
+  justify-content: stretch; /* Ocupa todo el ancho disponible */
+  
+  align-content: center; /* Igual pero vertical */
+}
+.container {
+  grid-auto-flow: row;         /* (default) Llena por filas */
+  grid-auto-flow: column;      /* Llena por columnas */
+  grid-auto-flow: dense;       /* Intenta llenar huecos antes de avanzar */
+  grid-auto-flow: row dense;   /* Combinación */
+}

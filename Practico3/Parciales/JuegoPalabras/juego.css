@@ -36,7 +36,22 @@ section{
 }
 
 #seccion-ingreso-datos{
-    display: block;
+    display: flex;
+    flex-flow: column wrap;
+    margin: 2em;
+    padding: .1em;
+}
+
+#seccion-ingreso-datos label{
+    margin: .2em;
+}
+
+#seccion-ingreso-datos input{
+    margin: .2em;
+}
+
+#seccion-ingreso-datos button{
+    
 }
 
 
