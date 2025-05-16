@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="juego.css">
 </head>
 
-<body>
+<body onLoad="chequeoVisita();">
     <section id="contenedorPrincipal">
-        <article id="seccion-ingreso-datos" >
+        <article id="seccion-ingreso-datos" class="oculto">
             <h2>Ingrese sus datos</h2>
             <label for="idapeynom">Apellido y Nombre</label>
             <input id="idapeynom" type="text" name="input" size="10" maxlength="10">
@@ -35,6 +35,7 @@
         <article id="contenedor-palabra-vacia"></article>
         <article id="contenedor-letras-ingresadas"></article>
         <article id="mensaje-decision"></article>
+        <article id="mensaje-bienvenida"></article>
     </section>
 
 

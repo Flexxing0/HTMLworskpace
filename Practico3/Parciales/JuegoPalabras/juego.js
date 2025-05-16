@@ -346,7 +346,7 @@ function botonAbandonar(){
 ocultaElemento("contenedor-palabra-vacia");
 ocultaElemento("contenedor-letras-ingresadas");
 ocultaElemento("mensaje-decision");
-muestraElemento("seccion-ingreso-datos");
+chequeoVisita();
 reiniciaValores();
 }
 
@@ -363,4 +363,75 @@ function botonVolverJugar(){
     ocultaElemento("mensaje-decision");
     reiniciaValores();
     muestraElemento("parte-principal");
+}
+
+//function chequeoVisita(){
+//  var nomCookie = "visitas";
+//  var vigencia = 60;
+//  var posCookie = document.cookie.search(nomCookie);
+//  var contenedor= document.getElementById("mensaje-bienvenida");
+//  if(posCookie == -1){
+//      document.cookie = nomCookie+"=1; max-age="+vigencia;
+//      muestraElemento("seccion-ingreso-datos");
+//      
+//  }else{
+//      
+//      contenedor.appendChild(mensajeBienvenida());
+//      contenedor.appendChild(creaBotonContinuar());
+//      //var posIgual = document.cookie.indexOf("=",posCookie);
+//        //var contador = parseInt(document.cookie.substring(posIgual+1))+1;
+//        //document.cookie = nomCookie+"="+contador+"; max-age="+vigencia;
+//        
+//    }
+//
+//
+//}
+
+function chequeoVisita(){
+    var contenedor= document.getElementById("mensaje-bienvenida");
+    if(localStorage.getItem("idapeynom") === null){
+        muestraElemento("seccion-ingreso-datos");
+    }
+    else{
+        if(document.getElementById("mensaje-bienvenida").classList.contains("oculto")){
+            muestraElemento("mensaje-bienvenida");
+        }
+        contenedor.appendChild(mensajeBienvenida());
+        contenedor.appendChild(creaBotonContinuar());
+        
+    }
+}
+
+function mensajeBienvenida(){
+    var info = localStorage.getItem("idapeynom");
+    var parrafoViejo = document.getElementById("mensaje-b");
+    if(parrafoViejo){
+        padre = parrafoViejo.parentNode;
+        padre.removeChild(parrafoViejo);
+    }
+    var parrafoNuevo = document.createElement("p");
+    parrafoNuevo.setAttribute("id","mensaje-b");
+    parrafoNuevo.innerHTML = "Bienvenido de vuelta"+info;
+    return parrafoNuevo;
+}
+
+function creaBotonContinuar(){
+    var btnViejo = document.getElementById("btn-continuar");
+    if(btnViejo){
+        padre = btnViejo.parentNode;
+        padre.removeChild(btnViejo);
+    }
+    var btnnuevo = document.createElement("button");
+    btnnuevo.setAttribute("id","btn-continuar");
+    btnnuevo.setAttribute("name","continuar");
+    btnnuevo.setAttribute("value","continua");
+    btnnuevo.setAttribute("onClick","botonContinua();");
+    btnnuevo.innerHTML = "Continuar";
+    return btnnuevo;
+}
+
+function botonContinua() {
+    ocultaElemento("mensaje-bienvenida");
+    muestraElemento("parte-principal");
+ 
 }
