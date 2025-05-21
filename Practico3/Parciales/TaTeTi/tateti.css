@@ -23,7 +23,7 @@ h2{
     width: 320px;
 }
 
-#cuadro button{
+.pendientes button{
     font-size: 20px;
     border-radius: .2em;
     cursor: pointer;

@@ -1,0 +1,12 @@
+.oculto{
+    display: none !important;
+}
+
+.pendientes button{
+    font-size: 20px;
+    border-radius: .2em;
+    cursor: pointer;
+    padding: 40px 40px;
+    max-block-size: 100%;
+    max-width: 100px;
+}

@@ -2,13 +2,43 @@
 <html lang="es">
 <head>
     <title>Laboratorio 1</title>
-    <link rel="" href="">
-    <script type="text/javascript" src=""></script>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
     <header></header>
     <section>
-        <article></article>
+        <article id="inicio-sesion">
+            <h2>Ingrese sus datos</h2>
+            <label for="idusuario">Usuario</label>
+            <input id="idusuario" type="text" name="input" size="10" maxlength="20">
+            <label for="idcontrasena">Contrasena</label>
+            <input id="idcontrasena" type="text" name="input" size="10" maxlength="20">
+            
+            <button id="id-enviar-ingreso" name="btnsesion" value="0" onclick="enviarSesion();">Iniciar Sesion</button>
+        </article>
+        <div id="mensaje-bienvenida" class="oculto"></div>
+        <article id="area-ingreso-tareas" class="oculto">
+            <!--<form id="id-ingreso-tareas" name="tareas1" action="" method="POST">-->
+                <!--<fieldset id="id-tareas-ingreso" name="tareas-ingreso">-->
+                    <label for="iddescripcion">Tarea</label>
+                    <input name="descripcion" id="iddescripcion" type="text" size="10" maxlength="40">
+                    <button id="idagregar" name="agregar" value="1" onclick="agregarTarea();">Agregar</button>
+                    <button id="idlimpiar" name="limpiar" value="2" onclick="limpiarTareas();">Limpiar Tarea</button>
+               <!--</fieldset>-->
+            <!--</form>-->
+        </article>
+        <article id="tareas-pendiente" class="oculto">
+            <h3>Nombre</h3>
+            <div id="pendientes">
+            </div>
+            <button id="idfinalizar" name="finalizar" value="3" onClick="finalizarTarea();">Finalizar Tarea</button>
+        </article>
+        <article id="tareass-finalizadas" class="oculto">
+            <h3>Tareas Finalizadas</h3>
+            <div id="tarea-finalizadas"></div>
+            
+        </article>
     </section>
     <footer></footer>
 </body>
