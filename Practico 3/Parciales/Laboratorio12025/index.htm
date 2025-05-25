@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Laboratorio 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <header></header>
+    <section>
+        <article id="inicio-sesion">
+            <h2>Ingrese sus datos</h2>
+            <label for="idusuario">Usuario</label>
+            <input id="idusuario" type="text" name="input" size="10" maxlength="20">
+            <button id="id-enviar-ingreso" name="btnsesion" value="0" onclick="enviarSesion();">Iniciar Sesion</button>
+        </article>
+        <div id="mensaje-bienvenida" class="oculto"></div>
+        <article id="area-ingreso-tareas" class="oculto">
+                    <label for="iddescripcion">Tarea</label>
+                    <input name="descripcion" id="iddescripcion" type="text" size="10" maxlength="40">
+                    <button id="idagregar" name="agregar" value="1" onclick="agregarTarea();">Agregar</button>
+        </article>
+        <article id="tareas-pendiente" class="oculto">
+            <table>
+                <thead><tr><th></th><th>Descripcion</th></tr></thead>
+                <tbody id="tareas-p"></tbody>
+            </table>
+            <button id="idagregar" name="agregar" value="1" onclick="finalizarTareas();">Finalizar Tareas</button>
+        </article>
+        <article id="tareas-finalizadas" class="oculto">
+            <h3>Tareas Finalizadas</h3>
+            <table>
+                <thead><tr><th>Descripcion</th></tr></thead>
+                <tbody id="tareas-f"></tbody>
+            </table>  
+        </article>
+    </section>
+    <footer></footer>
+</body>
+</html>
