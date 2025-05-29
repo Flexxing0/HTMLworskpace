@@ -1,0 +1,207 @@
+/* stytle.css */
+
+/* Estilos Globales */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Una fuente limpia y legible */
+    background-color: #f0f2f5; /* Un fondo suave */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #4A90E2; /* Un azul atractivo */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2em; /* Tamaño de fuente más grande para el título */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    background-color: #333;
+    color: #f0f2f5;
+    font-size: 0.9em;
+}
+
+/* Contenedor Principal */
+#pag-principal {
+    max-width: 900px; /* Ancho máximo para el contenido principal */
+    margin: 30px auto; /* Centrado y con margen superior/inferior */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Área de Inicio de Sesión (placeholder) */
+#inicio-sesion {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    text-align: center;
+    color: #6c757d;
+}
+/* Puedes agregar contenido aquí como "Área de inicio de sesión pendiente" */
+#inicio-sesion:empty::before {
+    content: "Espacio para inicio de sesión (si es necesario)";
+    font-style: italic;
+}
+
+
+/* Tablero del Juego */
+#tablero {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos hijos del tablero */
+}
+
+#tablero-tabla {
+    display: grid;
+    /* 5 columnas para 20 tarjetas (btn0-btn19). Ajusta si tienes más o menos. */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px; /* Espacio entre las tarjetas */
+    padding: 15px;
+    background-color: #d1e7dd; /* Un verde claro para el fondo del tablero */
+    border-radius: 8px;
+    margin-bottom: 20px; /* Espacio antes de los botones de control */
+    width: 100%; /* Ocupa el ancho disponible dentro de #tablero */
+    max-width: 600px; /* Un ancho máximo para el tablero en sí */
+}
+
+/* Estilo de las Tarjetas (botones) */
+.ocultaCarta {
+    width: 100%; /* Ocupan el espacio de la celda del grid */
+    aspect-ratio: 3 / 4; /* Proporción para que parezcan tarjetas (ancho / alto) */
+    background-color: #6c757d; /* Color de tarjeta oculta */
+    color: white;
+    border: 2px solid #5a6268;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.8em; /* Tamaño para un posible ícono o número cuando se revele */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
+    user-select: none; /* Evita que el texto se seleccione */
+}
+
+.ocultaCarta:hover {
+    background-color: #5a6268; /* Un poco más oscuro al pasar el ratón */
+    transform: scale(1.05); /* Efecto de ligero zoom */
+}
+
+/* Cuando reveles una carta con JavaScript, podrías añadir una clase como "revelada"
+   y definir estilos para ella, por ejemplo:*/
+   .revelada {
+       background-color: #fff;
+       color: #333;
+       font-size: 2em; 
+       cursor: default;
+       transform: rotateY(180deg); /*/ Efecto de volteo (requiere más setup)*/
+   }
+   .ocultaCarta.revelada img { /* Si usas imágenes dentro*/
+       display: block;
+   }
+
+
+/* Área de Datos del Tablero */
+#tablero-datos {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    font-size: 1.1em;
+}
+#tablero-datos:empty::before {
+    content: "Aquí se mostrarán los datos del juego (puntuación, tiempo, etc.)";
+    color: #6c757d;
+    font-style: italic;
+}
+
+
+/* Botones de Control */
+#btnIniciarJ, #btnFinalizar {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#btnIniciarJ {
+    background-color: #28a745; /* Verde para iniciar */
+}
+#btnIniciarJ:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#btnFinalizar {
+    background-color: #dc3545; /* Rojo para finalizar */
+}
+#btnFinalizar:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Media Queries para Responsividad (Ejemplo básico) */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.5em;
+    }
+
+    #tablero-tabla {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas más pequeñas */
+        gap: 8px;
+        max-width: 100%;
+    }
+
+    .ocultaCarta {
+        font-size: 1.5em;
+    }
+
+    #btnIniciarJ, #btnFinalizar {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    #pag-principal {
+        margin: 15px auto;
+        padding: 10px;
+    }
+    
+    #tablero-tabla {
+        grid-template-columns: repeat(4, 1fr); /* O podrías cambiar a 2 o 3 si son muy pequeñas */
+        gap: 5px;
+    }
+
+    .ocultaCarta {
+        /* Ajustar tamaño si es necesario, aspect-ratio ayudará */
+        font-size: 1.2em; /* O podrías ocultar el texto/ícono si no cabe */
+    }
+
+    header {
+        padding: 15px 0;
+    }
+}
+
+.oculto{
+    display: none !important;
+}
