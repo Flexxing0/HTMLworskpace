@@ -1,0 +1,20 @@
+
+
+* **`validar.php`** uses:
+    * `CookieManager.php`
+
+* **`validarJugada.php`** uses:
+    * `gestorJuego.php`
+    * `cookieManager.php`
+
+* **`borrar_cookie.php`** uses:
+    * `CookieManager.php`
+
+* **`gestorJuego.php`** uses:
+    * `jugador.php`
+    * `arrayUtils.php`
+    * `sessionManager.php`
+
+* **`index.php`** uses:
+    * `CookieManager.php`
+    * `gestorJuego.php` (conditionally, if cookies exist)
