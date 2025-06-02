@@ -1,0 +1,122 @@
+/* style.css */
+
+/* --- Base Styles --- */
+
+/* Resets and Box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+    margin: 0; /* Removes default margins */
+    padding: 0; /* Removes default paddings */
+}
+
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif; /* A common, readable sans-serif font */
+    line-height: 1.6; /* Improves readability by spacing out lines of text */
+    color: #333; /* Dark gray for good contrast */
+    background-color: #f4f4f4; /* Light gray background */
+    display: flex; /* Flexbox for overall layout */
+    flex-direction: column; /* Stacks header, main, footer vertically */
+    min-height: 100vh; /* Ensures the body takes at least the full viewport height */
+}
+
+/* Links */
+a {
+    color: #007bff; /* A common blue for links */
+    text-decoration: none; /* Removes underline by default */
+}
+
+a:hover {
+    text-decoration: underline; /* Adds underline on hover for better user experience */
+}
+
+/* Images */
+img {
+    max-width: 100%; /* Ensures images don't overflow their containers */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes extra space below images */
+}
+
+/* --- Layout Components --- */
+
+/* Header */
+header {
+    background-color: #333; /* Dark background for the header */
+    color: #fff; /* White text */
+    padding: 1rem 0; /* Vertical padding */
+    text-align: center; /* Center-aligns content inside the header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Main Content Area */
+main {
+    flex-grow: 1; /* Allows main content to take up available space */
+    padding: 2rem; /* Padding around the main content */
+    max-width: 1200px; /* Limits the maximum width for better readability on large screens */
+    margin: 0 auto; /* Centers the main content horizontally */
+    background-color: #fff; /* White background for the main content area */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    border-radius: 8px; /* Slightly rounded corners */
+}
+
+/* Footer */
+footer {
+    background-color: #333; /* Dark background, similar to header */
+    color: #fff; /* White text */
+    padding: 1rem 0; /* Vertical padding */
+    text-align: center; /* Center-aligns content inside the footer */
+    margin-top: auto; /* Pushes the footer to the bottom of the page */
+}
+
+/* --- Typography (Examples) --- */
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem; /* Space below headings */
+    color: #222; /* Slightly darker color for headings */
+}
+
+p {
+    margin-bottom: 1rem; /* Space below paragraphs */
+}
+
+/* --- Utility Classes (Examples) --- */
+
+/* A class for centering text */
+.text-center {
+    text-align: center;
+}
+
+/* A class for adding some margin to the bottom */
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* For screens smaller than 768px (e.g., tablets and mobile) */
+@media (max-width: 768px) {
+    main {
+        padding: 1rem; /* Reduce padding on smaller screens */
+    }
+
+    header, footer {
+        padding: 0.8rem 0; /* Slightly less padding */
+    }
+}
+
+/* For screens smaller than 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+    body {
+        font-size: 0.9em; /* Slightly smaller base font size */
+    }
+
+    main {
+        padding: 0.5rem; /* Even less padding */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Adjust heading sizes */
+    }
+}

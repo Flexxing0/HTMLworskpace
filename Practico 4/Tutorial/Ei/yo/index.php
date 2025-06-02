@@ -1,15 +1,19 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title></title>
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="script.js"></script>
+    
 </head>
 <body>
-    <header></header>
-    <section>
-        <article></article>
-    </section>
+    <header>Simon dice</header>
+    <main>
+
+    </main>
     <footer></footer>
 </body>
 </html>
