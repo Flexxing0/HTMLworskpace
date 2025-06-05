@@ -1,38 +1,58 @@
 <?php
-require_once 'sessionManager.php';
 require_once 'paciente.php';
 
-class Usuario extends Paciente{
+class Usuario
+{
 
-    private SessionManager $sesion;
+    private string $dni;
+    private string $nombre;
+    private string $clave;
     private array $integrantes;
-    private int $dni;
-    
-    function __construct(string $dni, string $nombre, int $peso, float $estatura)
-    {
-        $this->sesion = new SessionManager();
-        if($this->sesion->exists($dni)){
-            $this->dni= $this->sesion->get($dni);
-            $this->nombre = $usuario['nombre'];
-            $this->peso = (int)$usuario['peso'];
-            $this->estatura= (float)$usuario['estatura'];
-            $this->imc = (float)$usuario['imc'];
-            $this->resultado = $usuario['resultado'];
-            $this->integrantes = (array)$usuario['integrantes'];
-        }else{
-            
-        }
 
+    function __construct(string $dni, string $nombre, string $clave)
+    {
+        $this->dni = $dni;
+        $this->nombre = $nombre;
+        $this->clave = $clave;
+        $this->integrantes = [];
     }
 
-    public function getIntegrantes(){
+    public function getIntegrantes()
+    {
         return $this->integrantes;
     }
 
-    public function setIntegrantes(){
-
+    public function setIntegrante(Paciente $paciente)
+    {
+        array_push($this->integrantes, $paciente);
     }
 
+    public function getDni()
+    {
+        return $this->dni;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function getClave()
+    {
+        return $this->clave;
+    }
+
+    public function getUsuarioMain(string $nombre)
+    //Busca el dueno de la cuenta
+    {
+        $p = null;
+        for ($i=0;$i<count($this->integrantes);$i++){
+            if(trim($nombre) === trim($this->integrantes[$i]->getNombre())){
+                $p = $this->integrantes[$i];
+            }
+        }
+        return $p;
+    }
 
 }
 

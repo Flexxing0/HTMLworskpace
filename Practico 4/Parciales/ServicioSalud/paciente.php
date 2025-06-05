@@ -1,14 +1,15 @@
 <?php
 
-abstract class Paciente{
+class Paciente
+{
 
     protected string $nombre;
-    protected int $peso;
+    protected float $peso;
     protected float $estatura;
     protected float $imc;
     protected string $resultado;
 
-    function __construct(string $nombre, int $peso, float $estatura)
+    function __construct(string $nombre, float $peso, float $estatura)
     {
         $this->nombre = $nombre;
         $this->peso = $peso;
