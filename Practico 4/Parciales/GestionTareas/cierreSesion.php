@@ -1,4 +1,9 @@
-<?php session_start();	?>
+<?php 
+require_once 'sessionManager.php';
+require_once 'usuario.php';
+require_once 'cookieManager.php';
+$sesion = new SessionManager();
+?>
 <html>
 <head>
 <title>Sesiones - P&aacute;gina 1</title>
@@ -9,6 +14,9 @@
 
 if (isset($_SESSION['usuario']))
 {	//El usuario est� autenticado, por lo tanto se puede cerrar la sesion 
+	$cookieManager = new CookieManager();
+	$usuario = $sesion->get('usuario');
+	$cookieManager->setJson($usuario->getNombre(),$usuario->toArray());
 	$_SESSION[] = array();
 	session_destroy();
 	header("Location: index.php");
