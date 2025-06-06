@@ -1,0 +1,110 @@
+/* Coloca este CSS directamente en la sección <head> de tu HTML dentro de una etiqueta <style> */
+
+<style>
+/* Resets básicos para un lienzo limpio */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100%;
+}
+
+/*
+* SECCIÓN 1: ESTILOS PARA EL CONTENEDOR GRID (para las 9 tablas)
+* Esto controla la disposición 3x3 de las tablas.
+*/
+.grid-container {
+    display: grid; /* ¡Activa CSS Grid! */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual ancho */
+    gap: 10px; /* Espacio entre cada una de las 9 tablas */
+    
+    max-width: 900px; /* Ancho máximo del tablero 3x3 general. Ajusta según sea necesario. */
+    margin: 20px auto; /* Centra el contenedor en la página */
+    padding: 10px;
+    
+    /* Depuración visual del contenedor grid (quitar después de probar) */
+    border: 2px solid red; 
+    background-color: #e0ffe0; 
+
+    align-items: stretch; /* Asegura que las tablas llenen el espacio de su celda de grid */
+    justify-items: stretch;
+}
+
+/*
+* SECCIÓN 2: ESTILOS PARA CADA UNA DE LAS 9 TABLAS (los ítems del grid)
+* Esto controla la apariencia de cada tabla individual.
+*/
+.grid-container table {
+    width: 100%; /* Cada tabla ocupará el 100% del ancho de su celda en el grid */
+    
+    border-collapse: collapse; /* Fusiona los bordes de las celdas internas */
+    margin: 0; 
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    
+    /* ¡CRÍTICO! FUERZA EL ALGORITMO DE LAYOUT DE LA TABLA A SER FIJO.
+       Esto permite que los <td> internos controlen su propio ancho. */
+    table-layout: fixed;
+
+    /* Depuración visual de cada tabla individual (quitar después de probar) */
+    border: 1px solid blue; 
+    background-color: #fffacd; 
+}
+
+/*
+* SECCIÓN 3: ESTILOS PARA LAS FILAS (<tr>) dentro de cada tabla
+* Aseguramos que se comporten como filas de tabla.
+*/
+.grid-container tr {
+    /* Por defecto, tr es display: table-row. Lo ponemos explícitamente para evitar sobrescrituras. */
+    display: table-row; 
+    padding: 0;
+    margin: 0;
+}
+
+/*
+* SECCIÓN 4: ESTILOS PARA CADA CELDA (<td>) dentro de las tablas internas
+* Esto controla el tamaño y el contenido de cada celda individual.
+*/
+.grid-container td {
+    border: 1px solid #c0c0c0; /* Borde para cada celda */
+    background-color: #f9f9f9; /* Fondo claro */
+    
+    /* ¡CRÍTICO! ANCHO Y ALTO FIJO PARA CADA CELDA */
+    width: calc(100% / 3); /* Cada <td> ocupa 1/3 del ancho de su tabla padre */
+    height: 40px; /* ¡AJUSTA ESTE VALOR! Todas las celdas tendrán esta altura fija. */
+    
+    /* ******** ¡CAMBIO CLAVE AQUÍ! ******** */
+    /* Quitamos display: flex; del TD mismo. Volvemos a su comportamiento de celda de tabla. */
+    display: table-cell; /* Asegura que el TD se comporte como una celda de tabla */
+    
+    /* Y para centrar el contenido (en una celda de tabla): */
+    text-align: center; /* Centra horizontalmente el texto */
+    vertical-align: middle; /* Centra verticalmente el contenido */
+
+    /* Manejo de desbordamiento de contenido (si el contenido es más grande que la celda) */
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo al pasar el mouse por encima de las celdas */
+.grid-container td:hover {
+    background-color: #e9e9e9;
+}
+
+/* Estilos para el formulario */
+form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+form input[type="submit"] {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+</style>
