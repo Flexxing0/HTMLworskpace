@@ -1,0 +1,215 @@
+/* Estilos Generales y Reset Básico */
+body {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; /* Fuente moderna y legible */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Fondo suave y claro */
+    color: #333; /* Color de texto principal */
+    line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
+}
+
+/* Contenedor principal para centrar y limitar el ancho del contenido */
+main {
+    max-width: 960px; /* Ancho máximo para el contenido */
+    margin: 30px auto; /* Centra el contenido y añade espacio superior/inferior */
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para el contenido principal */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sutil sombra para profundidad */
+}
+
+/* Encabezado */
+header {
+    background-color: #007bff; /* Un azul primario atractivo */
+    color: #ffffff; /* Texto blanco en el encabezado */
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 5px solid #0056b3; /* Línea inferior para destacar */
+    margin-bottom: 20px; /* Espacio debajo del encabezado */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h3 {
+    margin: 0; /* Elimina el margen predeterminado del h3 dentro del header */
+    font-size: 2em; /* Tamaño de fuente para el título principal */
+    font-weight: 600; /* Un poco más de peso para el título */
+}
+
+/* Estilos para enlaces */
+a {
+    color: #007bff; /* Color azul para enlaces, coherente con el encabezado */
+    text-decoration: none; /* Sin subrayado por defecto */
+    transition: color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+a:hover {
+    color: #0056b3; /* Azul más oscuro al pasar el ratón */
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+/* Estilos para etiquetas de texto genéricas (como tu "No estas logeado XD") */
+p {
+    margin-bottom: 1em;
+}
+
+strong {
+    font-weight: bold;
+    color: #007bff; /* Destaca el texto importante */
+}
+
+/* --- Responsive Design Básico --- */
+@media (max-width: 768px) {
+    main {
+        margin: 20px 15px; /* Margen más pequeño en pantallas pequeñas */
+        padding: 15px;
+    }
+    header h3 {
+        font-size: 1.8em; /* Ajusta el tamaño del título en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        margin: 15px 10px;
+        padding: 10px;
+    }
+    header h3 {
+        font-size: 1.5em;
+    }
+}
+
+/* --- Consideraciones para Elementos que Podrías Añadir --- */
+/* Formulario (ej. para formIngresarTareas()) */
+form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+}
+
+form label {
+    display: block; /* Cada label en su propia línea */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form textarea,
+form select {
+    width: calc(100% - 20px); /* Ancho completo con padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none; /* Elimina el contorno azul al hacer foco */
+}
+
+form input[type="submit"],
+form input[type="button"],
+form button[type="submit"],
+form button[type="button"] {
+    background-color: #28a745; /* Verde para acciones positivas (enviar) */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px; /* Espacio entre botones */
+}
+
+form input[type="submit"]:hover,
+form input[type="button"]:hover,
+form button[type="submit"]:hover,
+form button[type="button"]:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño efecto de levantamiento */
+}
+
+/* Botones de reset o de acción secundaria */
+form input[type="reset"],
+form input[type="button"].secondary,
+form button[type="button"].secondary {
+    background-color: #6c757d; /* Gris para acciones secundarias/reset */
+}
+
+form input[type="reset"]:hover,
+form input[type="button"].secondary:hover,
+form button[type="button"].secondary:hover {
+    background-color: #5a6268;
+}
+
+
+/* Tablas (ej. para muestraTablaTareas()) */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el doble borde entre celdas */
+    margin-top: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra suave para la tabla */
+    background-color: #ffffff;
+    border-radius: 6px;
+    overflow: hidden; /* Asegura que los bordes redondeados se apliquen al contenido */
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0; /* Línea de separación entre filas */
+    text-align: left;
+}
+
+table thead th {
+    background-color: #007bff; /* Fondo del encabezado de la tabla */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase; /* Texto en mayúsculas para los encabezados */
+    font-size: 0.9em;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f8fbfd; /* Color de fondo alterno para filas pares */
+}
+
+table tbody tr:hover {
+    background-color: #e9f5ff; /* Color de fondo al pasar el ratón por una fila */
+    cursor: pointer; /* Indica que la fila es interactiva (si lo fuera) */
+}
+
+/* Mensajes de información/error */
+.mensaje-info {
+    background-color: #e0f2f7;
+    color: #007bff;
+    border: 1px solid #b3e0ff;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.mensaje-error {
+    background-color: #ffe0e0;
+    color: #dc3545;
+    border: 1px solid #ffb3b3;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
