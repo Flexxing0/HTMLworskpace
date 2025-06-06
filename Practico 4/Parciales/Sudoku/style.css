@@ -1,6 +1,6 @@
 /* Coloca este CSS directamente en la sección <head> de tu HTML dentro de una etiqueta <style> */
 
-<style>
+
 /* Resets básicos para un lienzo limpio */
 body, html {
     margin: 0;
@@ -107,4 +107,3 @@ form input[type="submit"] {
     font-size: 1em;
     cursor: pointer;
 }
-</style>
