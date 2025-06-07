@@ -59,3 +59,231 @@ footer {
         padding: 10px;
     }
 }
+
+{
+    /* style.css */
+
+/* --- 1. Reseteo y Estilos Base --- */
+/* Resetea márgenes y paddings por defecto del navegador para un control total */
+*, *::before, *::after {
+    box-sizing: border-box; /* Incluye padding y borde en el ancho/alto del elemento */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente legible y moderna */
+    line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+    color: #333; /* Color de texto principal */
+    background-color: #f4f7f6; /* Fondo suave para toda la página */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    display: flex; /* Utiliza flexbox para centrar o organizar el contenido principal */
+    flex-direction: column; /* Apila el header y main verticalmente */
+}
+
+/* --- 2. Estilos del Encabezado (Header) --- */
+header {
+    background-color: #2c3e50; /* Color oscuro para el encabezado */
+    color: #ecf0f1; /* Texto claro para contraste */
+    padding: 1.2rem 2rem; /* Espaciado interno generoso */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo del encabezado */
+    text-align: center; /* Centra el texto del encabezado */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+header h3 {
+    margin: 0; /* Elimina el margen por defecto del h3 */
+    font-size: 1.8rem; /* Tamaño de fuente del título */
+    font-weight: 600; /* Ligero negrita para el título */
+}
+
+/* --- 3. Estilos del Contenido Principal (Main) --- */
+main {
+    flex-grow: 1; /* Permite que 'main' ocupe todo el espacio vertical disponible */
+    padding: 2rem; /* Espaciado interno para el contenido principal */
+    max-width: 960px; /* Ancho máximo para el contenido para evitar líneas de texto muy largas */
+    margin: 2rem auto; /* Centra el contenido principal horizontalmente y le da margen vertical */
+    background-color: #ffffff; /* Fondo blanco para el área de contenido */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra más pronunciada para 'main' */
+    display: flex; /* Usa flexbox para organizar elementos dentro de 'main' */
+    flex-direction: column; /* Apila los elementos dentro de 'main' verticalmente */
+    align-items: center; /* Centra los elementos internos horizontalmente */
+    text-align: center; /* Asegura que el texto general esté centrado */
+}
+
+/* --- 4. Estilos para Mensajes de Bienvenida y Enlaces --- */
+main strong {
+    font-size: 1.2rem; /* Tamaño de fuente para el mensaje de bienvenida */
+    color: #28a745; /* Color verde para el mensaje de éxito */
+    margin-bottom: 1.5rem; /* Espacio debajo del mensaje */
+    display: block; /* Para que ocupe su propia línea y el margen funcione */
+}
+
+main a {
+    display: inline-block; /* Permite aplicar padding y margen */
+    background-color: #007bff; /* Color azul para enlaces de acción */
+    color: white; /* Texto blanco en los enlaces */
+    padding: 0.8rem 1.5rem; /* Espaciado interno de los botones/enlaces */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    text-decoration: none; /* Quita el subrayado por defecto de los enlaces */
+    font-weight: 500; /* Ligero negrita */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+    margin: 0.5rem; /* Margen entre enlaces/botones */
+}
+
+main a:hover {
+    background-color: #0056b3; /* Color azul más oscuro al pasar el ratón */
+}
+
+/* Estilo específico para el botón de cerrar sesión si lo quieres distinto */
+main a[href='cierreSesion.php'] {
+    background-color: #dc3545; /* Color rojo para el botón de cerrar sesión */
+}
+
+main a[href='cierreSesion.php']:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+}
+
+/* --- 5. Estilos para Formularios (si se usa formularioRegistro) --- */
+/* Estas son reglas generales. Puedes crear clases específicas si tienes muchos formularios. */
+form {
+    width: 100%;
+    max-width: 400px; /* Ancho máximo para formularios */
+    margin: 1.5rem auto; /* Centra el formulario y le da margen */
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+form label {
+    display: block; /* Cada label en su propia línea */
+    text-align: left; /* Alinea el texto de la etiqueta a la izquierda */
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] { /* Incluye email si lo usas */
+    width: calc(100% - 22px); /* Ancho total menos padding y borde */
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    outline: none; /* Elimina el borde de enfoque por defecto */
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus {
+    border-color: #007bff; /* Borde azul al enfocar */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra de enfoque */
+}
+
+form input[type="submit"] {
+    background-color: #28a745; /* Color verde para botones de envío */
+    color: white;
+    padding: 0.9rem 1.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Botón de envío ocupa todo el ancho del formulario */
+}
+
+form input[type="submit"]:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+}
+
+/* Mensajes de error o éxito del formulario */
+.form-message {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* --- 6. Responsive Básico --- */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 1.5rem;
+    }
+
+    header h3 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        max-width: 90%; /* Más ancho en pantallas pequeñas */
+    }
+
+    main strong {
+        font-size: 1.1rem;
+    }
+
+    main a {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+        margin: 0.4rem;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="email"] {
+        font-size: 0.9rem;
+    }
+
+    form input[type="submit"] {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.8rem 1rem;
+    }
+
+    header h3 {
+        font-size: 1.3rem;
+    }
+
+    main {
+        padding: 1rem;
+        margin: 1rem auto;
+        border-radius: 5px;
+    }
+
+    main a {
+        display: block; /* Enlaces como bloques para ocupar su propia línea en móvil */
+        width: calc(100% - 1rem); /* Ajuste de ancho si son bloques */
+        margin: 0.5rem auto; /* Centra los botones bloque */
+    }
+}
+}

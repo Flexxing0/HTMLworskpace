@@ -1,0 +1,27 @@
+/* Estilos para el contenedor que hará scroll */
+.scroll-container {
+    /* Define una altura máxima para el contenedor. Si el contenido excede esta altura, aparecerá el scroll vertical. */
+    max-height: 300px; /* Ejemplo: 300 píxeles de altura máxima */
+    
+    /* Define un ancho fijo o máximo para el contenedor. Si el contenido excede este ancho, aparecerá el scroll horizontal. */
+    max-width: 100%; /* El 100% del ancho de su padre. Si la tabla es más ancha, se mostrará el scroll. */
+    /* width: 800px; /* O podrías usar un ancho fijo en píxeles */
+
+    /* La propiedad 'overflow' es la clave: */
+    overflow-y: auto; /* Muestra una barra de scroll vertical solo si es necesario */
+    overflow-x: auto; /* Muestra una barra de scroll horizontal solo si es necesario */
+    
+    /* O simplemente: */
+    /* overflow: auto; /* Muestra barras de scroll (vertical y/o horizontal) solo si es necesario */
+
+    /* Opcional: para visualizar el contenedor */
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f8f8f8;
+}
+
+/* Opcional: Asegúrate de que la tabla dentro del contenedor no tenga un ancho fijo que la achique */
+.scroll-container table {
+    width: 100%; /* Asegura que la tabla intente llenar el ancho de su contenedor */
+    /* ... otros estilos de tabla (border-collapse, etc.) ... */
+}

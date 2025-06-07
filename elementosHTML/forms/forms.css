@@ -1,0 +1,158 @@
+/* --- General Form Styles --- */
+/* These styles apply to ALL <form> elements unless overridden by more specific rules. */
+form {
+    background-color: #ffffff; /* Clean white background for forms */
+    padding: 2rem; /* Ample internal spacing */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+    margin: 2rem auto; /* Centers the form horizontally and provides vertical spacing */
+    max-width: 450px; /* Limits the maximum width of the form */
+    display: flex; /* Uses flexbox for internal layout */
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center; /* Centers elements horizontally within the form */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+    color: #333; /* Default text color */
+}
+
+/* Styles for all labels within a form */
+form label {
+    display: block; /* Each label on its own line */
+    text-align: left; /* Aligns label text to the left */
+    margin-bottom: 0.5rem; /* Space below labels */
+    font-weight: 500; /* Slightly bolder text */
+    color: #555; /* Slightly muted text color for labels */
+    width: 100%; /* Make labels take full width for consistent alignment */
+    max-width: 300px; /* Align with input max-width for uniformity */
+}
+
+/* Styles for all text and password inputs within a form */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%; /* Input takes full width of its container */
+    max-width: 300px; /* Maximum width for inputs to prevent them from becoming too wide */
+    padding: 10px 12px; /* Internal spacing */
+    margin-bottom: 1rem; /* Space below inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 1rem; /* Standard font size */
+    color: #333; /* Text color */
+    outline: none; /* Removes the default blue/black outline on focus */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for focus effect */
+}
+
+/* Focus effect for text and password inputs */
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    border-color: #007bff; /* Blue border on focus */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Soft blue glow on focus */
+}
+
+/* Styles for all submit buttons within a form */
+form input[type="submit"] {
+    background-color: #28a745; /* Green background for submit buttons */
+    color: white; /* White text */
+    padding: 0.9rem 1.8rem; /* Internal spacing */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1.1rem; /* Larger font size */
+    font-weight: 600; /* Bolder text */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 1rem; /* Space above the button */
+    width: 100%; /* Make the button take full width */
+    max-width: 300px; /* Align with input max-width */
+}
+
+/* Hover effect for submit buttons */
+form input[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Styles for checkboxes and their labels */
+form input[type="checkbox"] {
+    margin-right: 0.5rem; /* Space to the right of the checkbox */
+    /* You might need to add specific styling for custom checkboxes,
+       but this basic margin helps with spacing. */
+}
+
+form label[for] { /* Target labels linked to an input via 'for' attribute */
+    cursor: pointer; /* Indicates it's clickable */
+}
+
+/* --- Specific Login Form Styles --- */
+/* These styles will only apply to the form with name="formInicioSesion"
+   and override the general form styles where specified. */
+form[name="formInicioSesion"] {
+    background-color: #e9eff6; /* Slightly different background for the login form */
+    border: 1px solid #d0d8e2; /* A subtle border */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); /* A bit more prominent shadow */
+    padding: 2.5rem; /* More padding for a more "contained" feel */
+    max-width: 400px; /* Slightly narrower for a login form */
+}
+
+form[name="formInicioSesion"] label {
+    color: #444; /* Slightly darker label color for the specific form */
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Specific styling for the submit button in the login form */
+form[name="formInicioSesion"] input[type="submit"] {
+    background-color: #007bff; /* Blue button for login */
+    max-width: 250px; /* Make login button slightly narrower */
+    margin-top: 1.5rem; /* More space above */
+    font-size: 1.2rem;
+}
+
+form[name="formInicioSesion"] input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Specific alignment for the "Recordarme" checkbox and its label */
+form[name="formInicioSesion"] .checkbox-container {
+    display: flex; /* Use flexbox to align checkbox and label */
+    align-items: center; /* Vertically center them */
+    width: 100%;
+    max-width: 300px; /* Align with input max-width */
+    margin-bottom: 1rem; /* Space below the checkbox row */
+    justify-content: flex-start; /* Aligns to the left */
+}
+
+form[name="formInicioSesion"] .checkbox-container label {
+    margin-bottom: 0; /* Remove bottom margin if using flex for alignment */
+    font-weight: normal; /* Normal font weight for this specific label */
+    color: #666; /* Muted color for "Recordarme" label */
+    width: auto; /* Allow label to take only content width */
+    max-width: none; /* Remove max-width constraint for this label */
+}
+
+form[name="formInicioSesion"] .checkbox-container input[type="checkbox"] {
+    margin-bottom: 0; /* Remove bottom margin from checkbox */
+    width: auto; /* Ensure checkbox doesn't try to take full width */
+    height: 1.2em; /* Adjust checkbox size if needed */
+    margin-right: 8px; /* Space between checkbox and label */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    form,
+    form[name="formInicioSesion"] {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        max-width: 90%; /* Wider on smaller screens */
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form input[type="submit"],
+    form label,
+    form[name="formInicioSesion"] .checkbox-container {
+        max-width: 100%; /* Inputs and labels take full width on smaller screens */
+    }
+
+    form input[type="submit"],
+    form[name="formInicioSesion"] input[type="submit"] {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
