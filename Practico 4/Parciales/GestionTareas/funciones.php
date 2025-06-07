@@ -11,7 +11,7 @@ function formularioRegistro()
     <form name="formRegistro" action="inicioSesion.php" method='POST'>
         <center>
             <label for="idnombre">Nombre: </label>
-            <input type="text" id="idnombre" name="nombre">
+            <input type="text" id="idnombre" name="nombre" required>
 
             <input type="submit" value="Ingresar">
         </center>
