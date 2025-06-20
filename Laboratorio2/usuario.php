@@ -82,6 +82,7 @@ class Usuario{
     private function sumatoria(array $nros)
     {
     $sumatoria = 0;
+    
     for ( $i=0 ; $i< count($nros) ; $i++)
     {
         $sumatoria += $nros[$i];     

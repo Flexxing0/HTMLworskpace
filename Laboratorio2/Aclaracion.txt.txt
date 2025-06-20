@@ -1,1 +1,0 @@
-Yo tome como que se genera un numero aleatorio automaticamente, entonces para no hacer un numero tan grande, lo limite que se genere hasta 100
