@@ -15,7 +15,6 @@ $sesion = new SessionManager();
         <?php
         if($sesion->exists('usuario')){
             $usuario = $sesion->get('usuario');
-            $usuario->setCentro();
             generaCuadro($usuario);
             $sesion->set('usuario',$usuario);
         } else {

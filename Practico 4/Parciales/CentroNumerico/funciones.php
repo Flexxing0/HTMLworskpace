@@ -1,11 +1,11 @@
 <?php
-require_once 'usuario.php';
+
 function generaCuadro(Usuario $usuario)
 {
     echo "<p>Puntaje: " . $usuario->getPuntaje() . "</p>";
     echo "<p>Partida: " . $usuario->getNroIntento() . "</p>";
     echo "<p>Longitud: entre 1 y ".count($usuario->getNrosGenerados())."</p>";
-    echo "<form name='formNroIngresado' action='validaNro.php' method='POST'> ";
+    echo "<form name='formNroIngresado' action='index.php' method='POST'> ";
     echo "<label for='idNroIngresado'>Ingresa el centro numerico</label>";
     echo "<input id='idNroIngresado' name='nroIngresado' type='number' required placeholder='Ej: 10'><br><br>";
     echo "<input type='submit' value='Validar'><br><br>";

@@ -17,7 +17,7 @@ $sesion = new SessionManager();
         if($nroIngresado === $centro)
         {
             echo "Ingresaste el centro correcto, ganaste";
-            echo "El centro numerico era: " . $centro = $usuario->getCentroNumerico();
+            echo "El centro numerico era: " . $centro;
             echo "<form name='formIntentar' method='POST' action='nuevoJuego.php'>";
             echo "<input type='submit' value='Nuevo juego'></form>";
         }        

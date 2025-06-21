@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD']==='POST' )
     $sesion->set('usuario',$nuevoJuego);
     } else {
         $usuario = new Usuario(0);
+        $usuario->setCentro();
         $sesiont->set('usuario', $usuario);
     }
     header("Location: index.php");
