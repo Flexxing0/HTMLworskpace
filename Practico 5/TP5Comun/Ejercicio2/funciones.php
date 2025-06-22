@@ -66,7 +66,8 @@ function muestraTablas(){
     $resu = $connection->query($query);
     if ($resu->num_rows>0)
     {
-    echo "<table>";
+    
+    echo "<table class='tabla-moderna'>";
     echo "<thead>";
     echo "<tr>";
     echo "<th>ID</th>";
@@ -94,6 +95,7 @@ function muestraTablas(){
     $resu->free();
     echo "</tbody>";
     echo "</table>";
+   
     }
     
     $connection->close();

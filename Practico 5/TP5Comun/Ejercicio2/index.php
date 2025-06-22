@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
     <title>Document</title>
+    <link rel="stylesheet" href="tablas.css">
 </head>
 <body>
     <section>
-        <article>
+        <article class="tabla-scroll-contenedor">
             <?php
             require_once 'funciones.php';
             if ($_SERVER['REQUEST_METHOD']==='POST')
