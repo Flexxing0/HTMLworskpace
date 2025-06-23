@@ -12,9 +12,10 @@
             <?php
             include 'funciones.php';
             selectProductos();
-            echo "<div id='contenedor-paises' class='.oculto'>";
+            echo "<div id='contenedor-producto' class='tabla-scroll-contenedor'></div>";
+            echo "<form id='contenedor-paises' class='oculto'>";
             selectPaises();
-            echo"</div>";
+            echo"</form>";
             ?>
         </article>
     </section>

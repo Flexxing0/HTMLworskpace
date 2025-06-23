@@ -32,7 +32,7 @@ class Ciudades
     {
         $con = new mysqli('localhost', 'root', '', 'productos');
         $ciudades = [];
-        $query = "SELECT id_ciudad, nombre_ciudad FROM ciudades WHERE id_pais = ".$idpais."ORDER BY id_ciudad";
+        $query = "SELECT id_ciudad, nombre_ciudad FROM ciudades WHERE id_pais = ".$idpais." ORDER BY id_ciudad";
         $resu = $con->query($query) or die("No se pudo realizar consulta de ciudades");
         while($registro = $resu->fetch_object())
         {
@@ -49,7 +49,8 @@ class Ciudades
     public static function getciudadBD($idciudad)
     {
         $con = new mysqli('localhost', 'root', '', 'productos');
-        $query = "SELECT * FROM ciudades WHERE id_ciudad =".$idciudad;
+        $ciudad = null;
+        $query = "SELECT id_ciudad,nombre_ciudad FROM ciudades WHERE id_ciudad = ".$idciudad;
         $resu = $con->query($query);
         if($registro = $resu->fetch_object())
         {
@@ -65,7 +66,8 @@ class Ciudades
     public function getTarifa()
     {
         $con = new mysqli('localhost', 'root', '', 'productos');
-        $query = "SELECT costo_envio FROM tarifas_envio WHERE id_ciudad =". $this->getIdciudad();
+        $tarifa=null;
+        $query = "SELECT costo_envio FROM tarifas_envio WHERE id_ciudad = ".$this->id_ciudad;
         $resu = $con->query($query);
         if($registro = $resu->fetch_object())
         {

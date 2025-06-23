@@ -36,11 +36,11 @@ class Productos
     }
     public function getStockProdu()
     {
-        return $this->precio;
+        return $this->stock;
     }
-    public function setStockProdu($pre)
+    public function setStockProdu($s)
     {
-        $this->precio = $pre;
+        $this->stock = $s;
     }
     public static function getProductoBD($idproducto)
     {
