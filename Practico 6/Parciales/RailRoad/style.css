@@ -255,8 +255,9 @@ select optgroup {
     overflow: hidden; /* Asegura que el contenido se ajuste al borde redondeado */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     text-align: center;
-    width: 150px; /* Ancho fijo para cada tarjeta de producto */
+    width: 200px; /* Ancho fijo para cada tarjeta de producto */
     transition: transform 0.2s ease; /* Efecto suave al pasar el ratón */
+    align-items: center;
 }
 
 .lista-empresas li:hover {
@@ -269,10 +270,12 @@ select optgroup {
     text-decoration: none; /* Elimina el subrayado por defecto del enlace */
     color: #3a71e9; /* Color de texto del enlace */
     display: flex; /* Para organizar la imagen y el texto en columna */
-    flex-direction: column;
+    flex-direction: row;
     align-items: center; /* Centra horizontalmente el contenido */
     padding: 15px; /* Espaciado interno del enlace */
     max-width: 50px;
+    margin-left: 50px;
+    text-align: center;
 }
 
 /* --- ESTILO CRÍTICO PARA LA IMAGEN --- */
@@ -285,10 +288,28 @@ select optgroup {
                          Elige según el efecto deseado. */
     border-radius: 4px; /* Bordes redondeados para la imagen */
     margin-bottom: 10px; /* Espacio entre la imagen y el texto/nombre del producto */
+    align-items: center;
+    text-align: center;
 }
 
 /* Estilo para el texto/nombre del producto */
 .lista-empresas li a span {
     font-weight: bold;
     font-size: 1.1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    margin-bottom: 0.8em;
+    line-height: 1.2;
+}
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-color); /* Se mantiene el mismo color, se puede cambiar a uno más oscuro si se desea */
+    text-decoration: underline;
 }
