@@ -345,3 +345,11 @@ form input[type="submit"]:hover {
     cursor: pointer;
     background-color: #cceeff; /* Pequeño efecto visual extra */
 }
+
+.valido{
+    color:green;
+}
+
+.invalido{
+    color: red;
+}

@@ -14,6 +14,7 @@ if(isset($_POST['action']))
                     $obj->nombre = 'Vacio';
                 }else{
                     $obj = new stdClass();
+                    $obj->nombre = 'Lleno';
                     $obj->modelos = [];
                     for($i=0;$i<count($modelos);$i++)
                     {
@@ -29,11 +30,14 @@ if(isset($_POST['action']))
         case 'aviones':
             if (isset($_POST['modelo'])){
                 $modelo = modelo::getModeloBD($_POST['modelo']);
+                if(!is_null($modelo))
+                {
                 $aviones = avion::getAvionesBD($modelo->getIdModelo());
                 if (is_null($aviones)){
 
                 } else {
                     $obj = new stdClass();
+                    $obj->nombre = 'Lleno';
                     $obj->nombreCompleto = $modelo->getNombre();
                     $obj->fabricante = $modelo->getFabricante();
                     $obj->aviones = [];
@@ -47,8 +51,13 @@ if(isset($_POST['action']))
                         $obj->aviones[] = $avion;
                     }
                 }
-                $json = json_encode($obj);
+                
+            } else {
+                $obj = new stdClass();
+                $obj->nombre = 'Vacio';
             }
+            $json = json_encode($obj);
+        }
             break;
         default:
         break;

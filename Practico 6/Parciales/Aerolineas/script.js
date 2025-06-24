@@ -42,6 +42,8 @@ function cargaDatos()
         {
             console.log(peticion.responseText);
             var objeto = JSON.parse(peticion.responseText);
+            if (objeto.nombre === 'Lleno'){
+            modeloValido(true);
             const contenedor = document.getElementById("datosModelo");
             var texto = "<h3>Detalles de la aeronave:</h3><br>";
             texto += "<p>Nombre: "+objeto.nombreCompleto+"</p><br>";
@@ -60,7 +62,27 @@ function cargaDatos()
             contenedor.innerHTML += texto2;
             muestraElemento("datosModelo");
         }
+        else {
+            modeloValido(false);
+            ocultaElemento("datosModelo");
+        }
+        }
     }
+}
+
+function modeloValido(boolean){
+    const valido = document.getElementById("modeloValido");
+    switch (boolean){
+        case false:
+            valido.innerHTML = "<p class='invalido'>Modelo Invalido</p>";
+            break;
+        case true:
+            valido.innerHTML = "<p class='valido'>Modelo Valido</p>";
+            break;
+        default:
+            break;
+    }
+    muestraElemento("modeloValido");
 }
 function ocultaElemento(elemento){
     var e = document.getElementById(elemento);
