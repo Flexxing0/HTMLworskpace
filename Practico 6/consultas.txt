@@ -1,0 +1,201 @@
+-- =====================
+-- CONSULTAS SQL BÁSICAS
+-- =====================
+
+-- Selecciona todos los campos de una tabla
+SELECT * FROM empleados;
+
+-- Selecciona solo columnas específicas
+SELECT nombre, apellido FROM empleados;
+
+-- Filtra filas con WHERE
+SELECT * FROM empleados WHERE salario > 50000;
+
+-- Ordena resultados (ASC: ascendente, DESC: descendente)
+SELECT * FROM empleados ORDER BY apellido ASC;
+
+-- Elimina duplicados con DISTINCT
+SELECT DISTINCT ciudad FROM clientes;
+
+-- Cuenta la cantidad de filas
+SELECT COUNT(*) FROM empleados;
+
+-- ======================
+-- CONSULTAS INTERMEDIAS
+-- ======================
+
+-- Renombra columnas en el resultado con AS
+SELECT nombre AS "Nombre de empleado" FROM empleados;
+
+-- Agrupa resultados y usa funciones de agregación
+SELECT departamento, AVG(salario) AS salario_promedio
+FROM empleados
+GROUP BY departamento;
+
+-- Filtra grupos con HAVING (se usa junto con GROUP BY)
+SELECT departamento, COUNT(*) AS cantidad
+FROM empleados
+GROUP BY departamento
+HAVING COUNT(*) > 5;
+
+-- Condicionales múltiples
+SELECT * FROM empleados
+WHERE salario BETWEEN 40000 AND 60000
+AND ciudad IN ('Madrid', 'Barcelona');
+
+-- ===================
+-- FUNCIONES Y FECHAS
+-- ===================
+
+-- Fecha actual
+SELECT NOW(); -- Fecha y hora actuales
+
+-- Filtra por fechas
+SELECT * FROM ventas
+WHERE fecha_venta >= '2024-01-01';
+
+-- Extrae año, mes o día
+SELECT EXTRACT(YEAR FROM fecha_nacimiento) AS anio_nac
+FROM empleados;
+
+-- ==================
+-- CONSULTAS AVANZADAS
+-- ==================
+
+-- Subconsulta en SELECT
+SELECT nombre,
+       (SELECT COUNT(*) FROM ventas WHERE ventas.id_cliente = clientes.id) AS compras
+FROM clientes;
+
+-- Subconsulta en FROM
+SELECT avg_por_depto.departamento, avg_por_depto.promedio
+FROM (
+  SELECT departamento, AVG(salario) AS promedio
+  FROM empleados
+  GROUP BY departamento
+) AS avg_por_depto;
+
+-- UNION de resultados (combina resultados de varias consultas)
+SELECT nombre FROM clientes
+UNION
+SELECT nombre FROM proveedores;
+
+-- ======================
+-- CONSULTAS MULTITABLA (JOINS)
+-- ======================
+
+-- INNER JOIN: solo coincidencias en ambas tablas
+SELECT empleados.nombre, departamentos.nombre
+FROM empleados
+INNER JOIN departamentos ON empleados.id_departamento = departamentos.id;
+
+-- LEFT JOIN: todos los empleados, incluso si no tienen departamento
+SELECT empleados.nombre, departamentos.nombre
+FROM empleados
+LEFT JOIN departamentos ON empleados.id_departamento = departamentos.id;
+
+-- JOIN con alias
+SELECT e.nombre, d.nombre
+FROM empleados e
+JOIN departamentos d ON e.id_departamento = d.id;
+
+-- =================
+-- CONSULTAS ÚTILES
+-- =================
+
+-- Inserta un nuevo registro
+INSERT INTO clientes(nombre, correo)
+VALUES ('Juan Pérez', 'juan@email.com');
+
+-- Actualiza registros existentes
+UPDATE empleados
+SET salario = salario * 1.1
+WHERE departamento = 'Ventas';
+
+-- Borra registros
+DELETE FROM clientes
+WHERE inactivo = true;
+
+-- Crear índice (mejora performance en búsquedas)
+CREATE INDEX idx_nombre ON empleados(nombre);
+
+-- Buscar por coincidencia parcial
+SELECT * FROM productos WHERE nombre LIKE '%mouse%';
+
+-- Contar con condición
+SELECT COUNT(*) FROM empleados WHERE salario > 60000;
+
+-- Ver estructura de una tabla (MySQL)
+DESCRIBE empleados;
+
+-- Ver todas las tablas en una base de datos (MySQL)
+SHOW TABLES;
+
+-- ======================
+-- CONTROL Y SEGURIDAD
+-- ======================
+
+-- Crear usuario
+CREATE USER 'nuevo_usuario'@'localhost' IDENTIFIED BY 'contraseña123';
+
+-- Dar permisos
+GRANT SELECT, INSERT ON base_datos.* TO 'nuevo_usuario'@'localhost';
+
+-- Ver permisos
+SHOW GRANTS FOR 'nuevo_usuario'@'localhost';
+
+-- ===========================
+-- FUNCIONES DE AGREGACIÓN EXTRA
+-- ===========================
+
+-- Suma de una columna numérica
+SELECT SUM(salario) AS total_salarios FROM empleados;
+
+-- Mínimo y máximo
+SELECT MIN(salario) AS salario_minimo, MAX(salario) AS salario_maximo FROM empleados;
+
+-- Agrupar por ciudad y mostrar suma
+SELECT ciudad, SUM(salario) AS total_salario_ciudad
+FROM empleados
+GROUP BY ciudad;
+
+-- Agrupar y filtrar grupos con HAVING
+SELECT ciudad, COUNT(*) AS cantidad_empleados
+FROM empleados
+GROUP BY ciudad
+HAVING COUNT(*) > 10;
+
+-- Combinación de múltiples funciones agregadas
+SELECT departamento,
+       COUNT(*) AS total_empleados,
+       AVG(salario) AS salario_promedio,
+       SUM(salario) AS salario_total
+FROM empleados
+GROUP BY departamento;
+
+-- ====================
+-- FUNCIONES DE TEXTO
+-- ====================
+
+-- Concatenar texto
+SELECT CONCAT(nombre, ' ', apellido) AS nombre_completo FROM empleados;
+
+-- Pasar a mayúsculas o minúsculas
+SELECT UPPER(nombre), LOWER(apellido) FROM empleados;
+
+-- Obtener longitud de una cadena
+SELECT nombre, LENGTH(nombre) AS longitud FROM empleados;
+
+-- =====================
+-- FUNCIONES CONDICIONALES
+-- =====================
+
+-- CASE: lógica condicional en SELECT
+SELECT nombre,
+       salario,
+       CASE
+         WHEN salario > 60000 THEN 'Alto'
+         WHEN salario BETWEEN 40000 AND 60000 THEN 'Medio'
+         ELSE 'Bajo'
+       END AS categoria_salarial
+FROM empleados;
