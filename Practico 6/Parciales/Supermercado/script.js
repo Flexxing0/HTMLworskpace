@@ -41,6 +41,7 @@ function verDetalle(nombre) {
 
 function filtraProductos() {
     const filtro1 = document.getElementById("idFiltrosProductos").value;
+    //const filtro1 = document.getElementById("inputProductos").value; Este es para el input, funciona igual a la linea de arriba, queda para copiar y pegar en proximo lab
     const filtro2 = document.getElementById("idFiltrosUbicacion").value;
     var parametros;
     if (filtro1 !== "" && filtro2 !== "") {
