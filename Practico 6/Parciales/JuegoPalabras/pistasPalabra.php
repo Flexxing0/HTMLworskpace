@@ -1,20 +1,19 @@
 <?php
-class Pistas
+class PistasPalabra
 {
-    private $idpista;
+    private $idPista;
     private $ordenPista;
     private $pista;
 
     public function __construct(){}
-
-    public function getIdpista()
+    public function getIdPista()
     {
-        return $this->idpista;
+        return $this->idPista;
     }
 
-    public function setIdpista($idpista)
+    public function setIdPista($idPista)
     {
-        $this->idpista = $idpista;
+        $this->idPista = $idPista;
     }
 
     public function getOrdenPista()
@@ -37,15 +36,15 @@ class Pistas
         $this->pista = $pista;
     }
 
-    public static function getPistasPalabra($idPalabra)
+    public static function getPistasBD($id)
     {
         $con = new mysqli('localhost', 'root', '', 'juego_palabras_2024');
         $pistas = [];
-        $query = "SELECT * FROM pistas WHERE idPalabra = ".$idPalabra;
+        $query = "SELECT * FROM pistas WHERE idPalabra = ".$id." ORDER BY ordenPista ASC";
         $resu = $con->query($query);
         while ($regi = $resu->fetch_object()) {
-            $pista = new Pistas();
-            $pista->setIdpista($regi->idpista);
+            $pista = new PistasPalabra();
+            $pista->setIdPista($regi->idpista);
             $pista->setOrdenPista($regi->ordenPista);
             $pista->setPista($regi->pista);
             $pistas[] = $pista;

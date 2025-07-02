@@ -69,7 +69,7 @@ article {
 
 /* --- Contenedor Principal para la Tabla Scrollable (ESENCIAL) --- */
 .tabla-scroll-contenedor {
-    width: 100%;
+    width: 80%;
     max-width: 100vw;
     
     /* ¡Clave para el scroll Horizontal! */
@@ -96,7 +96,7 @@ article {
        Deja que las celdas determinen el ancho total.
        O, si quieres un 100% que pueda desbordarse, usa un min-width:
     */
-    min-width: 300px; /* Ejemplo: fuerza a que la tabla tenga al menos 800px de ancho.
+    min-width: 100%; /* Ejemplo: fuerza a que la tabla tenga al menos 800px de ancho.
                          AJUSTA ESTE VALOR según el ancho MÍNIMO que necesites para tus columnas
                          para que siempre se desborde en pantallas más pequeñas.
                          Si tus columnas son muy anchas, pon un valor más grande. */
@@ -113,7 +113,7 @@ article {
 .tabla-moderna td {
     padding: 10px 15px; /* Espaciado interno de las celdas */
     border: 1px solid #ddd; /* Bordes de las celdas */
-    text-align: left; /* Alineación del texto */
+    text-align: center; /* Alineación del texto */
     
     /* ¡PROPIEDAD CLAVE para que el texto no se envuelva y fuerce el desbordamiento! */
     white-space: nowrap; 
