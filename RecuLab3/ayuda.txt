@@ -1,0 +1,38 @@
+DELETE FROM productos
+WHERE nombre LIKE '%usado%' OR nombre LIKE 'descontinuado%';
+
+DELETE FROM productos
+WHERE stock < 5 AND precio < 10.00;
+
+DELETE FROM productos
+WHERE fecha_creacion < '2024-01-01 00:00:00';
+
+UPDATE productos
+SET stock = stock + 10
+WHERE activo = TRUE AND stock < 50 AND descripcion LIKE '%electrónica%';
+
+UPDATE productos
+SET precio = NULL
+WHERE activo = FALSE AND nombre LIKE 'Descontinuado%';
+
+UPDATE productos
+SET precio = precio * 0.90
+WHERE precio BETWEEN 50.00 AND 100.00;
+
+INSERT INTO productos (nombre, descripcion, precio, stock, activo)
+VALUES
+('Teclado Mecánico', 'Teclado RGB con switches azules', 85.99, 200, TRUE),
+('Monitor Curvo', 'Monitor de 27 pulgadas, 144Hz', 350.00, 75, TRUE),
+('Webcam HD', 'Cámara web para videollamadas', 45.00, 150, TRUE);
+
+INSERT INTO productos (nombre, descripcion, precio, stock, fecha_creacion, activo)
+SELECT nombre, descripcion, precio, stock, NOW(), TRUE
+FROM productos_nuevos
+WHERE stock > 0;
+
+INSERT INTO productos (id, nombre, precio, stock)
+VALUES (101, 'Nuevo Producto XYZ', 25.00, 10)
+ON DUPLICATE KEY UPDATE
+    nombre = VALUES(nombre),
+    precio = VALUES(precio),
+    stock = VALUES(stock);
