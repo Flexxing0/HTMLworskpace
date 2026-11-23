@@ -1,0 +1,3 @@
+# Archivo: .htaccess
+# Deshabilita el listado de directorios en Apache 2.4 (Unidad 7 - Seguridad)
+Options -Indexes

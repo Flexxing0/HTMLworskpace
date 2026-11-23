@@ -1,0 +1,3 @@
+# Archivo: sql/.htaccess
+# Bloquea la descarga directa del script SQL desde el navegador (Unidad 7)
+Require all denied

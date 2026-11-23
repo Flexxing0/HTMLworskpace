@@ -1,0 +1,3 @@
+# Archivo: clases/.htaccess
+# Bloquea el acceso HTTP directo a las clases PHP del servidor (Unidad 7)
+Require all denied
