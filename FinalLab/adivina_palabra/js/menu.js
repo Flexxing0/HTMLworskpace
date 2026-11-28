@@ -1,79 +1,58 @@
-/* Archivo: js/menu.js
- * Validacion de configuracion de partida y recuerdo de preferencias con
- * localStorage (Unidad 3).
- */
 
-function cargarPreferenciasMenu()
-{
-    if (typeof localStorage === "undefined")
-    {
+function cargarPreferenciasMenu() {
+    if (typeof localStorage === "undefined") {
         return;
     }
 
     var ultimoNivel = localStorage.getItem("adivina_ultimo_nivel");
-    if (ultimoNivel)
-    {
+    if (ultimoNivel) {
         var radiosNivel = document.getElementsByName("rdnDificultad");
-        for (var i = 0; i < radiosNivel.length; i++)
-        {
-            if (radiosNivel[i].value === ultimoNivel)
-            {
+        for (var i = 0; i < radiosNivel.length; i++) {
+            if (radiosNivel[i].value === ultimoNivel) {
                 radiosNivel[i].checked = true;
             }
         }
     }
 
     var ultimoTiempo = localStorage.getItem("adivina_ultimo_tiempo");
-    if (ultimoTiempo !== null)
-    {
+    if (ultimoTiempo !== null) {
         var radiosTiempo = document.getElementsByName("rdnTiempo");
-        for (var j = 0; j < radiosTiempo.length; j++)
-        {
-            if (radiosTiempo[j].value === ultimoTiempo)
-            {
+        for (var j = 0; j < radiosTiempo.length; j++) {
+            if (radiosTiempo[j].value === ultimoTiempo) {
                 radiosTiempo[j].checked = true;
             }
         }
     }
 }
 
-function guardarPreferenciasMenu()
-{
-    if (typeof localStorage === "undefined")
-    {
+function guardarPreferenciasMenu() {
+    if (typeof localStorage === "undefined") {
         return;
     }
 
     var radiosNivel = document.getElementsByName("rdnDificultad");
-    for (var i = 0; i < radiosNivel.length; i++)
-    {
-        if (radiosNivel[i].checked)
-        {
+    for (var i = 0; i < radiosNivel.length; i++) {
+        if (radiosNivel[i].checked) {
             localStorage.setItem("adivina_ultimo_nivel", radiosNivel[i].value);
         }
     }
 
     var radiosTiempo = document.getElementsByName("rdnTiempo");
-    for (var j = 0; j < radiosTiempo.length; j++)
-    {
-        if (radiosTiempo[j].checked)
-        {
+    for (var j = 0; j < radiosTiempo.length; j++) {
+        if (radiosTiempo[j].checked) {
             localStorage.setItem("adivina_ultimo_tiempo", radiosTiempo[j].value);
         }
     }
 }
 
-function validarNuevaPartida()
-{
+function validarNuevaPartida() {
     const cmbCategoria = document.getElementById("cmbCategoria");
     const divError = document.getElementById("errorClienteMenu");
 
-    if (!cmbCategoria || cmbCategoria.value === "" || cmbCategoria.value === "0")
-    {
+    if (!cmbCategoria || cmbCategoria.value === "" || cmbCategoria.value === "0") {
         divError.textContent = "Debes seleccionar una categoria para iniciar la partida.";
         muestraElemento("errorClienteMenu");
-        if (cmbCategoria)
-        {
+        if (cmbCategoria) {
             cmbCategoria.focus();
         }
         return false;
@@ -81,17 +60,14 @@ function validarNuevaPartida()
 
     var radiosNivel = document.getElementsByName("rdnDificultad");
     var nivelElegido = false;
-    for (var i = 0; i < radiosNivel.length; i++)
-    {
-        if (radiosNivel[i].checked)
-        {
+    for (var i = 0; i < radiosNivel.length; i++) {
+        if (radiosNivel[i].checked) {
             nivelElegido = true;
             break;
         }
     }
 
-    if (!nivelElegido)
-    {
+    if (!nivelElegido) {
         divError.textContent = "Debes seleccionar un nivel de dificultad.";
         muestraElemento("errorClienteMenu");
         return false;
@@ -102,7 +78,6 @@ function validarNuevaPartida()
     return true;
 }
 
-function confirmarAbandonoDesdeMenu()
-{
+function confirmarAbandonoDesdeMenu() {
     return window.confirm("Si abandonas la partida en curso, se registrara como perdida y no sumara puntos. ¿Deseas continuar?");
 }

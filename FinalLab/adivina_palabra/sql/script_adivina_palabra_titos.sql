@@ -1,11 +1,3 @@
--- =============================================================================
--- Archivo: sql/script_adivina_palabra_titos.sql
--- Proyecto: Adivine la palabra (B) - Examen Final Regular
--- Materia: Laboratorio de Programación y Lenguajes (UNPSJB)
--- Alumno: Félix Aldo TITOS
--- Motor: MySQL (InnoDB, utf8mb4)
--- =============================================================================
-
 SET NAMES utf8mb4;
 SET time_zone = '-03:00';
 
@@ -20,7 +12,7 @@ USE adivina_palabra_titos;
 -- -----------------------------------------------------------------------------
 -- Tabla: usuarios
 -- Almacena jugadores registrados. El nombre de usuario es único; el correo
--- electrónico puede repetirse (decisión A-16). El administrador no figura aquí.
+-- electrónico puede repetirse . El administrador no figura aquí.
 -- -----------------------------------------------------------------------------
 CREATE TABLE usuarios (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -36,7 +28,7 @@ CREATE TABLE usuarios (
 -- -----------------------------------------------------------------------------
 -- Tabla: categorias
 -- Almacena las categorías de palabras. Usa baja lógica (activa = 0) para
--- preservar siempre la integridad histórica (decisión A-15).
+-- preservar siempre la integridad histórica 
 -- -----------------------------------------------------------------------------
 CREATE TABLE categorias (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -50,7 +42,7 @@ CREATE TABLE categorias (
 -- Tabla: palabras
 -- Solo letras a-z y ñ en minúscula, mínimo 3 letras.
 -- Dificultad según longitud: baja (3-5), media (6-8), alta (9 o más).
--- Usa baja lógica (activa = 0) en todos los casos (decisión A-15).
+-- Usa baja lógica (activa = 0) en todos los casos 
 -- -----------------------------------------------------------------------------
 CREATE TABLE palabras (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,

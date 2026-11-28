@@ -1,8 +1,4 @@
 <?php
-/* Archivo: controladores/obtenerTop10.php
- * Controlador AJAX (POST) que devuelve el ranking Top 10 de jugadores con mayor
- * puntaje acumulado (RF-17, A-13) y el puntaje actualizado del jugador en sesion.
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/UsuarioDAO.php';

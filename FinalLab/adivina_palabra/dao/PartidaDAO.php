@@ -1,16 +1,11 @@
 <?php
-/* Archivo: dao/PartidaDAO.php
- * Data Access Object para la tabla partidas: persistencia atomica de cierre
- * de partida + acumulacion de puntaje en una sola transaccion InnoDB (RF-16)
- * y estadisticas generales para el panel de administracion.
- */
 
 require_once __DIR__ . '/../db/conexion.php';
 require_once __DIR__ . '/../modelo/Partida.php';
 
 class PartidaDAO
 {
-    // Guarda la partida y acumula el puntaje del jugador en una sola transaccion (Unidad 5, RF-16)
+
     public static function guardarResultadoTransaccion($partida)
     {
         if (!$partida->estaFinalizada() || $partida->estaGuardadaEnBD())
@@ -87,7 +82,6 @@ class PartidaDAO
         }
     }
 
-    // Devuelve totales generales de jugadores y partidas para el tablero del administrador
     public static function obtenerTotalesSistema()
     {
         $totales = array('jugadores' => 0, 'partidas' => 0);

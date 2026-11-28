@@ -1,8 +1,4 @@
 <?php
-/* Archivo: vistas/rankingView.php
- * Vista del Top 10 de jugadores con mayor puntaje acumulado (RF-17, A-13).
- * Protegida por sesion de jugador (RF-21).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';

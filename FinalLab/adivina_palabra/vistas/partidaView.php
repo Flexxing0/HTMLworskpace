@@ -1,10 +1,4 @@
 <?php
-/* Archivo: vistas/partidaView.php
- * Vista de juego de Adivine la palabra (B).
- * Protegida por sesion de jugador (RF-21). La palabra nunca viaja en el HTML
- * ni en respuestas mientras la partida esta activa; toda interaccion ocurre
- * mediante AJAX (XMLHttpRequest + JSON) hacia controladores/.
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';

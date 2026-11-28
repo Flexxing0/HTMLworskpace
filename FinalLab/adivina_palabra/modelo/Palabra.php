@@ -1,9 +1,4 @@
 <?php
-/* Archivo: modelo/Palabra.php
- * Entidad Palabra, normalizacion UTF-8, validacion de formato (A-Z y Ñ,
- * minimo 3 letras) y calculo de dificultad segun longitud (A-06, A-07).
- * Las operaciones de acceso a BD se ubican en dao/PalabraDAO.php.
- */
 
 class Palabra
 {
@@ -89,13 +84,11 @@ class Palabra
         return self::calcularDificultad($this->longitud);
     }
 
-    // Normaliza la palabra a minuscula UTF-8 sin espacios en los extremos
     public static function normalizar($texto)
     {
         return mb_strtolower(trim($texto), 'UTF-8');
     }
 
-    // Valida caracteres permitidos (A-07: solo a-z y ñ) y longitud (A-06: 3 a 50)
     public static function validarFormato($palabraRaw)
     {
         $palabra = self::normalizar($palabraRaw);
@@ -123,7 +116,6 @@ class Palabra
         return array('ok' => true, 'valor' => $palabra, 'longitud' => $longitud);
     }
 
-    // Clasifica dificultad segun la cantidad de letras (A-06)
     public static function calcularDificultad($longitud)
     {
         $len = (int) $longitud;
@@ -141,7 +133,6 @@ class Palabra
         }
     }
 
-    // Devuelve rango [min, max] de longitud para cada nivel valido
     public static function getRangoLongitudPorNivel($nivel)
     {
         switch ($nivel)

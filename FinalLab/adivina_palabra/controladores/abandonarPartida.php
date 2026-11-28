@@ -1,8 +1,4 @@
 <?php
-/* Archivo: controladores/abandonarPartida.php
- * Controlador AJAX (POST) que registra el abandono voluntario de la partida:
- * se considera perdida, acumula 0 puntos y guarda en BD (RF-13).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';

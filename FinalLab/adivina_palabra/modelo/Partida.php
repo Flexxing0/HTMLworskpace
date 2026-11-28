@@ -1,10 +1,4 @@
 <?php
-/* Archivo: modelo/Partida.php
- * Motor del juego Adivine la palabra (B) en el servidor.
- * Mantiene la logica del juego (mascara, pistas secuenciales, control de tiempo
- * en el servidor, calculo de resultado y puntajes) separada de la interfaz y de
- * la capa de acceso a datos (dao/PartidaDAO.php).
- */
 
 require_once __DIR__ . '/Palabra.php';
 
@@ -154,7 +148,6 @@ class Partida
         return implode(' ', $this->mascara);
     }
 
-    // Inicializa una nueva partida con la palabra elegida desde la BD
     public function iniciarNueva($idUsuario, $objPalabra, $nivel, $tiempoLimiteSeg)
     {
         $this->idUsuario = (int) $idUsuario;
@@ -183,7 +176,6 @@ class Partida
         $this->puntajeSumado = 0;
     }
 
-    // Calcula el tiempo transcurrido en el servidor
     public function getTiempoTranscurridoSeg()
     {
         if ($this->fechaInicioTs <= 0)
@@ -209,7 +201,6 @@ class Partida
         return $transcurrido;
     }
 
-    // Verifica en el servidor si la partida con tiempo llego al limite
     public function estaTiempoVencido()
     {
         if ($this->tiempoLimiteSeg === null || $this->finalizada)
@@ -219,7 +210,6 @@ class Partida
         return (time() - $this->fechaInicioTs) >= $this->tiempoLimiteSeg;
     }
 
-    // Procesa el intento de una letra arriesgada por el jugador (RF-09 a RF-11)
     public function arriesgarLetra($letraRaw)
     {
         if ($this->finalizada)
@@ -232,7 +222,6 @@ class Partida
             );
         }
 
-        // El servidor valida siempre el tiempo antes de aceptar una nueva letra
         if ($this->estaTiempoVencido())
         {
             $this->finalizarPorTiempo();
@@ -255,7 +244,6 @@ class Partida
             );
         }
 
-        // Decision A-04: letra ya arriesgada no cuenta como intento ni genera pista
         if (in_array($letra, $this->letrasArriesgadas, true))
         {
             return array(
@@ -266,7 +254,6 @@ class Partida
             );
         }
 
-        // Decision A-17: letra ya descubierta previamente por una pista
         if (in_array($letra, $this->mascara, true))
         {
             return array(
@@ -277,7 +264,6 @@ class Partida
             );
         }
 
-        // Decision A-05: cada letra nueva arriesgada suma 1 intento
         $this->intentos++;
         $this->letrasArriesgadas[] = $letra;
 
@@ -293,7 +279,7 @@ class Partida
 
         if ($encontrada)
         {
-            // Suma un unico punto aunque la letra aparezca repetida
+
             $this->letrasAcertadas++;
 
             if ($this->estaPalabraCompleta())
@@ -309,10 +295,8 @@ class Partida
             );
         }
 
-        // La letra no esta: se descubre la siguiente pista secuencial
         $letraPista = $this->aplicarPista();
 
-        // Decision A-03: una pista puede completar la palabra
         if ($this->estaPalabraCompleta())
         {
             $this->evaluarFinalizacion('completa');
@@ -326,7 +310,6 @@ class Partida
         );
     }
 
-    // Descubre la primera letra aun oculta en todas sus ocurrencias (RF-11)
     private function aplicarPista()
     {
         $letraPista = null;
@@ -359,7 +342,6 @@ class Partida
         return !in_array('*', $this->mascara, true);
     }
 
-    // Abandono voluntario: cuenta como perdida y acumula 0 puntos (RF-13)
     public function abandonar()
     {
         if (!$this->finalizada)
@@ -368,7 +350,6 @@ class Partida
         }
     }
 
-    // Cierre por tiempo agotado aplicando decision A-02 Opcion A
     public function finalizarPorTiempo()
     {
         if (!$this->finalizada)
@@ -377,7 +358,6 @@ class Partida
         }
     }
 
-    // Determina resultado y puntajes segun reglas del enunciado, A-01 y A-02 Opcion A
     private function evaluarFinalizacion($motivo)
     {
         $this->finalizada = true;
@@ -405,7 +385,6 @@ class Partida
             $this->resultado = 'perdida';
         }
 
-        // Decision A-01: acumula puntaje en ganada o empate segun multiplicador de dificultad
         if ($this->resultado === 'ganada' || $this->resultado === 'empate')
         {
             $multiplicador = self::getMultiplicadorPorNivel($this->nivel);
@@ -430,7 +409,6 @@ class Partida
         }
     }
 
-    // Devuelve solo los datos seguros para el cliente: NUNCA envia la palabra mientras esta activa
     public function getEstadoPublico()
     {
         $transcurrido = $this->getTiempoTranscurridoSeg();
@@ -455,7 +433,6 @@ class Partida
             'finalizada' => $this->finalizada
         );
 
-        // Solo al finalizar se revela la palabra (decision A-20) y el resultado
         if ($this->finalizada)
         {
             $estado['resultado'] = $this->resultado;
@@ -468,7 +445,6 @@ class Partida
         return $estado;
     }
 
-    // Guarda el estado de la partida en $_SESSION como arreglo plano
     public function guardarEnSession()
     {
         $_SESSION['partida_activa'] = array(
@@ -496,7 +472,6 @@ class Partida
         );
     }
 
-    // Hidrata una instancia de Partida desde $_SESSION['partida_activa']
     public static function cargarDesdeSession()
     {
         if (!isset($_SESSION['partida_activa']) || !is_array($_SESSION['partida_activa']))

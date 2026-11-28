@@ -1,19 +1,12 @@
-/* Archivo: js/registro.js
- * Validacion en cliente del formulario de registro y verificacion asincronica
- * de disponibilidad del nombre de usuario mediante XMLHttpRequest (Unidad 6).
- */
-
 var usuarioDisponibleAjax = null;
 var ultimoUsuarioVerificado = "";
 
-function verificarUsuarioDisponible()
-{
+function verificarUsuarioDisponible() {
     const txtUsuario = document.getElementById("txtUsuario");
     const spanEstado = document.getElementById("estadoUsuarioAjax");
     var nombre = txtUsuario.value.trim();
 
-    if (nombre === "")
-    {
+    if (nombre === "") {
         spanEstado.textContent = "";
         spanEstado.className = "estado-ajax";
         usuarioDisponibleAjax = null;
@@ -21,8 +14,7 @@ function verificarUsuarioDisponible()
         return;
     }
 
-    if (nombre.length < 3 || nombre.length > 30)
-    {
+    if (nombre.length < 3 || nombre.length > 30) {
         spanEstado.textContent = "Debe tener entre 3 y 30 caracteres.";
         spanEstado.className = "estado-ajax estado-ocupado";
         usuarioDisponibleAjax = false;
@@ -30,8 +22,7 @@ function verificarUsuarioDisponible()
         return;
     }
 
-    if (!/^[a-zA-Z0-9_]+$/.test(nombre))
-    {
+    if (!/^[a-zA-Z0-9_]+$/.test(nombre)) {
         spanEstado.textContent = "Solo letras sin tilde, numeros y guion bajo (_).";
         spanEstado.className = "estado-ajax estado-ocupado";
         usuarioDisponibleAjax = false;
@@ -39,8 +30,7 @@ function verificarUsuarioDisponible()
         return;
     }
 
-    if (nombre.toLowerCase() === "administrador")
-    {
+    if (nombre.toLowerCase() === "administrador") {
         spanEstado.textContent = "El nombre 'administrador' esta reservado.";
         spanEstado.className = "estado-ajax estado-ocupado";
         usuarioDisponibleAjax = false;
@@ -60,35 +50,28 @@ function verificarUsuarioDisponible()
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(parametros);
 
-    function procesarVerificacion()
-    {
-        if ((peticion.readyState == 4) && (peticion.status == 200))
-        {
+    function procesarVerificacion() {
+        if ((peticion.readyState == 4) && (peticion.status == 200)) {
             var objeto = JSON.parse(peticion.responseText);
 
-            // Ignora respuestas viejas si el usuario siguio editando el campo
-            if (txtUsuario.value.trim() !== nombre)
-            {
+            if (txtUsuario.value.trim() !== nombre) {
                 return;
             }
 
-            if (objeto.ok && objeto.disponible)
-            {
+            if (objeto.ok && objeto.disponible) {
                 spanEstado.textContent = objeto.mensaje;
                 spanEstado.className = "estado-ajax estado-disponible";
                 usuarioDisponibleAjax = true;
                 ultimoUsuarioVerificado = nombre;
             }
-            else
-            {
+            else {
                 spanEstado.textContent = objeto.mensaje;
                 spanEstado.className = "estado-ajax estado-ocupado";
                 usuarioDisponibleAjax = false;
                 ultimoUsuarioVerificado = nombre;
             }
         }
-        else if (peticion.readyState == 4)
-        {
+        else if (peticion.readyState == 4) {
             spanEstado.textContent = "No se pudo verificar disponibilidad (se validara al enviar).";
             spanEstado.className = "estado-ajax estado-verificando";
             usuarioDisponibleAjax = null;
@@ -96,8 +79,7 @@ function verificarUsuarioDisponible()
     }
 }
 
-function validarRegistro()
-{
+function validarRegistro() {
     const txtUsuario = document.getElementById("txtUsuario");
     const txtCorreo = document.getElementById("txtCorreo");
     const txtPassword = document.getElementById("txtPassword");
@@ -110,44 +92,36 @@ function validarRegistro()
     var password2 = txtPassword2.value;
     var mensajeError = "";
 
-    if (usuario.length < 3 || usuario.length > 30)
-    {
+    if (usuario.length < 3 || usuario.length > 30) {
         mensajeError = "El nombre de usuario debe tener entre 3 y 30 caracteres.";
         txtUsuario.focus();
     }
-    else if (!/^[a-zA-Z0-9_]+$/.test(usuario))
-    {
+    else if (!/^[a-zA-Z0-9_]+$/.test(usuario)) {
         mensajeError = "El nombre de usuario solo permite letras sin tilde, numeros y guion bajo (_).";
         txtUsuario.focus();
     }
-    else if (usuario.toLowerCase() === "administrador")
-    {
+    else if (usuario.toLowerCase() === "administrador") {
         mensajeError = "El nombre de usuario 'administrador' esta reservado.";
         txtUsuario.focus();
     }
-    else if (usuarioDisponibleAjax === false && ultimoUsuarioVerificado === usuario)
-    {
+    else if (usuarioDisponibleAjax === false && ultimoUsuarioVerificado === usuario) {
         mensajeError = "Ese nombre de usuario no esta disponible. Elegi otro.";
         txtUsuario.focus();
     }
-    else if (correo === "" || correo.indexOf("@") === -1 || correo.indexOf(".") === -1)
-    {
+    else if (correo === "" || correo.indexOf("@") === -1 || correo.indexOf(".") === -1) {
         mensajeError = "Ingresa una direccion de correo electronico valida.";
         txtCorreo.focus();
     }
-    else if (password.length < 6 || password.length > 64)
-    {
+    else if (password.length < 6 || password.length > 64) {
         mensajeError = "La contraseña debe tener entre 6 y 64 caracteres.";
         txtPassword.focus();
     }
-    else if (password !== password2)
-    {
+    else if (password !== password2) {
         mensajeError = "Las contraseñas ingresadas no coinciden.";
         txtPassword2.focus();
     }
 
-    if (mensajeError !== "")
-    {
+    if (mensajeError !== "") {
         divError.textContent = mensajeError;
         muestraElemento("errorClienteRegistro");
         return false;

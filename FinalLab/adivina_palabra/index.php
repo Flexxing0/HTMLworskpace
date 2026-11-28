@@ -1,14 +1,9 @@
 <?php
-/* Archivo: index.php
- * Pagina de inicio y vista de login para jugadores y administrador (RF-03, RF-21, A-12).
- * Envia el formulario a controladores/loginController.php (patron MVC).
- */
 
 require_once __DIR__ . '/modelo/Sesion.php';
 
 Sesion::iniciar();
 
-// Si ya existe sesion valida, redirige a la vista correspondiente al rol
 if (Sesion::esJugador())
 {
     header('Location: vistas/menuView.php');

@@ -1,10 +1,4 @@
 <?php
-/* Archivo: modelo/Sesion.php
- * Gestion de sesiones PHP: inicio seguro, regeneracion de ID, control de
- * expiracion por inactividad/absoluta, mensajes flash PRG y restriccion de
- * acceso por rol (RF-21).
- */
-
 require_once __DIR__ . '/../db/config.php';
 
 class Sesion
@@ -22,7 +16,6 @@ class Sesion
             session_start();
         }
 
-        // Control de expiracion por inactividad y tiempo absoluto (Unidad 7)
         if (isset($_SESSION['rol']))
         {
             $ahora = time();
@@ -109,7 +102,6 @@ class Sesion
         return $mensaje;
     }
 
-    // Guarda datos temporales entre controlador POST y vista GET (patron PRG)
     public static function guardarFlash($clave, $valor)
     {
         self::iniciar();
@@ -120,7 +112,6 @@ class Sesion
         $_SESSION['flash'][$clave] = $valor;
     }
 
-    // Recupera y elimina un dato temporal flash
     public static function obtenerFlash($clave, $defecto = null)
     {
         self::iniciar();
@@ -133,7 +124,6 @@ class Sesion
         return $defecto;
     }
 
-    // Protege vistas y controladores AJAX exclusivos del jugador (RF-21)
     public static function exigirJugador($esAjax = false, $rutaLogin = '../index.php', $rutaAdmin = '../vistas/adminIndexView.php')
     {
         self::iniciar();
@@ -171,7 +161,6 @@ class Sesion
         }
     }
 
-    // Protege vistas y controladores exclusivos del administrador (RF-21)
     public static function exigirAdmin($rutaLogin = '../index.php', $rutaMenuJugador = '../vistas/menuView.php')
     {
         self::iniciar();
@@ -189,7 +178,6 @@ class Sesion
         }
     }
 
-    // Limpia $_SESSION, invalida la cookie y destruye la sesion (Unidad 4)
     public static function cerrar()
     {
         if (session_status() === PHP_SESSION_NONE)

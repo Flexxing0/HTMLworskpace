@@ -1,8 +1,4 @@
 <?php
-/* Archivo: vistas/adminCategoriasView.php
- * Vista del ABM de categorias para el administrador (RF-19, RF-21, A-15).
- * Envia acciones POST a controladores/categoriaController.php.
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/CategoriaDAO.php';

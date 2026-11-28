@@ -1,8 +1,4 @@
 <?php
-/* Archivo: controladores/verificarUsuario.php
- * Controlador AJAX (POST) que valida formato y disponibilidad de un nombre de
- * usuario antes de enviar el formulario de registro (RF-02, Unidad 6).
- */
 
 require_once __DIR__ . '/../modelo/Usuario.php';
 require_once __DIR__ . '/../dao/UsuarioDAO.php';

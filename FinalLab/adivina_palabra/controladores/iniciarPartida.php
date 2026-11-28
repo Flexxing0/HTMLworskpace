@@ -1,8 +1,4 @@
 <?php
-/* Archivo: controladores/iniciarPartida.php
- * Controlador POST del menu del jugador: gestiona el abandono de una partida
- * activa pendiente (A-19) o el sorteo e inicio de una nueva partida (RF-06, RF-07, A-18).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';
@@ -20,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST')
 
 $idUsuario = Sesion::getIdUsuario();
 
-// Caso 1: Abandono explicito de una partida activa desde el menu (A-19)
 if (isset($_POST['btnAbandonarActiva']))
 {
     $partidaActiva = Partida::cargarDesdeSession();
@@ -40,7 +35,6 @@ if (isset($_POST['btnAbandonarActiva']))
     exit;
 }
 
-// Caso 2: Inicio de una nueva partida (RF-06, RF-07, A-18)
 $categoriaElegida = isset($_POST['cmbCategoria']) ? (int) $_POST['cmbCategoria'] : 0;
 $nivelElegido = isset($_POST['rdnDificultad']) ? trim($_POST['rdnDificultad']) : '';
 $tiempoElegido = isset($_POST['rdnTiempo']) ? trim($_POST['rdnTiempo']) : '0';
@@ -85,7 +79,7 @@ try
     $palabraSorteada = PalabraDAO::obtenerAleatoria($categoriaElegida, $nivelElegido);
     if ($palabraSorteada === null)
     {
-        // Decision A-18: combinacion categoria + dificultad sin palabras disponibles
+
         Sesion::guardarFlash('menu_error', 'No hay palabras disponibles para esa categoria y dificultad. Proba otra combinacion.');
         Sesion::guardarFlash('menu_cat', $categoriaElegida);
         Sesion::guardarFlash('menu_nivel', $nivelElegido);

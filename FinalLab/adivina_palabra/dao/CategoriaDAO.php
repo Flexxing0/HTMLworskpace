@@ -1,14 +1,11 @@
 <?php
-/* Archivo: dao/CategoriaDAO.php
- * Data Access Object para la tabla categorias (ABM con baja logica A-15).
- */
 
 require_once __DIR__ . '/../db/conexion.php';
 require_once __DIR__ . '/../modelo/Categoria.php';
 
 class CategoriaDAO
 {
-    // Lista todas las categorias activas junto a la cantidad de palabras activas
+
     public static function listarActivas()
     {
         $con = Conexion::conectar();
@@ -37,7 +34,6 @@ class CategoriaDAO
         return $categorias;
     }
 
-    // Busca una categoria activa por su ID
     public static function buscarActivaPorId($id)
     {
         $idInt = (int) $id;
@@ -65,7 +61,6 @@ class CategoriaDAO
         return $categoria;
     }
 
-    // Cuenta cuantas palabras activas tiene asociadas una categoria
     public static function contarPalabrasActivas($idCategoria)
     {
         $idInt = (int) $idCategoria;
@@ -86,7 +81,6 @@ class CategoriaDAO
         return $total;
     }
 
-    // Alta de categoria (si existia dada de baja logica, se reactiva)
     public static function alta($nombreRaw)
     {
         $val = Categoria::validarNombre($nombreRaw);
@@ -116,7 +110,6 @@ class CategoriaDAO
                     return array('ok' => false, 'mensaje' => 'Ya existe una categoria activa con ese nombre.');
                 }
 
-                // Reactivacion de categoria dada de baja logica previamente (A-15)
                 $idExistente = (int) $existente->id;
                 $stmtUpd = $con->prepare('UPDATE categorias SET activa = 1, nombre = ? WHERE id = ?');
                 $stmtUpd->bind_param('si', $nombre, $idExistente);
@@ -142,7 +135,6 @@ class CategoriaDAO
         }
     }
 
-    // Modificacion del nombre de una categoria activa
     public static function modificar($id, $nombreRaw)
     {
         $idInt = (int) $id;
@@ -190,7 +182,6 @@ class CategoriaDAO
         }
     }
 
-    // Baja logica de categoria (solo si no tiene palabras activas asociadas)
     public static function bajaLogica($id)
     {
         $idInt = (int) $id;

@@ -1,8 +1,4 @@
 <?php
-/* Archivo: dao/PalabraDAO.php
- * Data Access Object para la tabla palabras: listado filtrado, sorteo
- * aleatorio por categoria/dificultad y ABM con baja logica siempre (A-15).
- */
 
 require_once __DIR__ . '/../db/conexion.php';
 require_once __DIR__ . '/../modelo/Palabra.php';
@@ -10,7 +6,7 @@ require_once __DIR__ . '/CategoriaDAO.php';
 
 class PalabraDAO
 {
-    // Lista palabras activas pertenecientes a categorias activas (con filtros opcionales)
+
     public static function listarActivas($idCategoria = null, $nivel = null)
     {
         $con = Conexion::conectar();
@@ -72,7 +68,6 @@ class PalabraDAO
         return $palabras;
     }
 
-    // Busca una palabra activa por su ID
     public static function buscarActivaPorId($id)
     {
         $idInt = (int) $id;
@@ -107,7 +102,6 @@ class PalabraDAO
         return $obj;
     }
 
-    // Selecciona al azar una palabra activa que cumpla categoria y dificultad (RF-07)
     public static function obtenerAleatoria($idCategoria, $nivel)
     {
         $idCat = (int) $idCategoria;
@@ -152,7 +146,6 @@ class PalabraDAO
         return $obj;
     }
 
-    // Alta de palabra: exige categoria activa, evita duplicados (A-14) y reactiva si estaba inactiva (A-15)
     public static function alta($palabraRaw, $idCategoria)
     {
         $val = Palabra::validarFormato($palabraRaw);
@@ -189,7 +182,6 @@ class PalabraDAO
                     return array('ok' => false, 'mensaje' => 'Esa palabra ya existe en la categoria seleccionada.');
                 }
 
-                // Reactiva palabra dada de baja logica previamente (A-15)
                 $idExistente = (int) $existente->id;
                 $stmtUpd = $con->prepare('UPDATE palabras SET activa = 1, longitud = ? WHERE id = ?');
                 $stmtUpd->bind_param('ii', $longitud, $idExistente);
@@ -215,7 +207,6 @@ class PalabraDAO
         }
     }
 
-    // Modificacion de una palabra activa (recalcula longitud automaticamente)
     public static function modificar($id, $palabraRaw, $idCategoria)
     {
         $idInt = (int) $id;
@@ -271,7 +262,6 @@ class PalabraDAO
         }
     }
 
-    // Baja logica de palabra: siempre marca activa = 0, nunca elimina fisicamente (A-15)
     public static function bajaLogica($id)
     {
         $idInt = (int) $id;

@@ -1,7 +1,4 @@
 <?php
-/* Archivo: controladores/palabraController.php
- * Controlador POST del ABM de palabras para el administrador (RF-20, A-06, A-07, A-14, A-15).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/PalabraDAO.php';

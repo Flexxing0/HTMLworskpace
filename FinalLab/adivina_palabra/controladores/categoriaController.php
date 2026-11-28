@@ -1,7 +1,4 @@
 <?php
-/* Archivo: controladores/categoriaController.php
- * Controlador POST del ABM de categorias para el administrador (RF-19, A-15).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/CategoriaDAO.php';

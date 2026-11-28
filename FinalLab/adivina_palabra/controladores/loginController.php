@@ -1,7 +1,4 @@
 <?php
-/* Archivo: controladores/loginController.php
- * Controlador POST de autenticacion para jugadores y administrador (RF-03, A-12).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/UsuarioDAO.php';

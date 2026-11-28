@@ -1,9 +1,4 @@
 <?php
-/* Archivo: controladores/arriesgarLetra.php
- * Controlador AJAX (POST) que procesa una letra arriesgada por el jugador.
- * Actualiza mascara, aciertos, pistas y, si la partida termina, guarda el
- * resultado y acumula el puntaje en una transaccion InnoDB (RF-09 a RF-16).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';

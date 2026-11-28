@@ -1,9 +1,3 @@
-/* Archivo: js/partida.js
- * Logica del lado del cliente para la pantalla de juego (vistas/partidaView.php).
- * Toda comunicacion con el servidor se realiza con XMLHttpRequest + JSON
- * (Unidad 6) y el temporizador local es solo visual (el servidor valida el tiempo).
- */
-
 var temporizadorId = null;
 var tiempoLimiteSeg = null;
 var tiempoTranscurridoSeg = 0;
@@ -16,24 +10,19 @@ var ALFABETO = [
     "r", "s", "t", "u", "v", "w", "x", "y", "z"
 ];
 
-function inicializarPartida()
-{
+function inicializarPartida() {
     construirTecladoVirtual();
     cargarEstadoPartida();
 }
 
-// Genera los botones del teclado virtual (A-Z y Ñ) usando DOM (Unidad 3)
-function construirTecladoVirtual()
-{
+function construirTecladoVirtual() {
     const contenedor = document.getElementById("tecladoVirtual");
-    if (!contenedor)
-    {
+    if (!contenedor) {
         return;
     }
     contenedor.innerHTML = "";
 
-    for (var i = 0; i < ALFABETO.length; i++)
-    {
+    for (var i = 0; i < ALFABETO.length; i++) {
         var letra = ALFABETO[i];
         var boton = document.createElement("button");
         boton.type = "button";
@@ -46,67 +35,54 @@ function construirTecladoVirtual()
     }
 }
 
-// Consulta el estado seguro actual de la partida al cargar la pagina (incluye F5)
-function cargarEstadoPartida()
-{
+function cargarEstadoPartida() {
     var peticion = new XMLHttpRequest();
     peticion.open("POST", "../controladores/estadoPartida.php", true);
     peticion.onreadystatechange = procesarEstadoInicial;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(null);
 
-    function procesarEstadoInicial()
-    {
-        if ((peticion.readyState == 4) && (peticion.status == 200))
-        {
+    function procesarEstadoInicial() {
+        if ((peticion.readyState == 4) && (peticion.status == 200)) {
             var objeto = JSON.parse(peticion.responseText);
 
-            if (objeto.sesionExpirada)
-            {
+            if (objeto.sesionExpirada) {
                 window.location.href = "../index.php";
                 return;
             }
 
-            if (objeto.sinPartida)
-            {
+            if (objeto.sinPartida) {
                 window.location.href = "menuView.php";
                 return;
             }
 
-            if (objeto.ok && objeto.partida)
-            {
+            if (objeto.ok && objeto.partida) {
                 actualizarInterfazPartida(objeto.partida);
-                if (objeto.partida.finalizada)
-                {
+                if (objeto.partida.finalizada) {
                     mostrarResultadoFinal(objeto.partida, objeto.mensaje, objeto.guardadaBD);
                 }
-                else
-                {
+                else {
                     iniciarTemporizadorVisual(objeto.partida);
                     enfocarIngresoLetra();
                 }
             }
-            else
-            {
+            else {
                 mostrarMensajeMovimiento(objeto.mensaje || "No se pudo cargar la partida.", "alerta-error");
             }
         }
     }
 }
 
-function arriesgarDesdeFormulario()
-{
+function arriesgarDesdeFormulario() {
     const txtLetra = document.getElementById("txtLetra");
-    if (!txtLetra)
-    {
+    if (!txtLetra) {
         return false;
     }
 
     var letra = txtLetra.value.trim().toLowerCase();
     txtLetra.value = "";
 
-    if (!/^[a-zñ]$/.test(letra))
-    {
+    if (!/^[a-zñ]$/.test(letra)) {
         mostrarMensajeMovimiento("Ingresa una unica letra valida (A-Z o Ñ, sin tilde).", "alerta-error");
         enfocarIngresoLetra();
         return false;
@@ -116,20 +92,15 @@ function arriesgarDesdeFormulario()
     return false;
 }
 
-function arriesgarDesdeTecla(letra)
-{
-    if (partidaFinalizada || peticionEnCurso)
-    {
+function arriesgarDesdeTecla(letra) {
+    if (partidaFinalizada || peticionEnCurso) {
         return;
     }
     enviarLetraArriesgada(letra);
 }
 
-// Envia la letra arriesgada por AJAX POST a controladores/arriesgarLetra.php
-function enviarLetraArriesgada(letra)
-{
-    if (partidaFinalizada || peticionEnCurso)
-    {
+function enviarLetraArriesgada(letra) {
+    if (partidaFinalizada || peticionEnCurso) {
         return;
     }
 
@@ -143,65 +114,52 @@ function enviarLetraArriesgada(letra)
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(parametros);
 
-    function procesarRespuestaLetra()
-    {
-        if ((peticion.readyState == 4) && (peticion.status == 200))
-        {
+    function procesarRespuestaLetra() {
+        if ((peticion.readyState == 4) && (peticion.status == 200)) {
             peticionEnCurso = false;
             var objeto = JSON.parse(peticion.responseText);
 
-            if (objeto.sesionExpirada)
-            {
+            if (objeto.sesionExpirada) {
                 detenerTemporizador();
                 window.location.href = "../index.php";
                 return;
             }
 
-            if (objeto.sinPartida)
-            {
+            if (objeto.sinPartida) {
                 detenerTemporizador();
                 window.location.href = "menuView.php";
                 return;
             }
 
-            if (objeto.partida)
-            {
+            if (objeto.partida) {
                 actualizarInterfazPartida(objeto.partida);
             }
 
-            // Estilo de feedback segun resultado de la jugada
             var claseAlerta = "alerta-info";
-            if (!objeto.ok)
-            {
+            if (!objeto.ok) {
                 claseAlerta = "alerta-error";
             }
-            else if (objeto.accion === "acierto")
-            {
+            else if (objeto.accion === "acierto") {
                 claseAlerta = "alerta-exito";
             }
-            else if (objeto.accion === "pista" || objeto.accion === "repetida" || objeto.accion === "ya_descubierta")
-            {
+            else if (objeto.accion === "pista" || objeto.accion === "repetida" || objeto.accion === "ya_descubierta") {
                 claseAlerta = "alerta-aviso";
             }
-            else if (objeto.accion === "tiempo_agotado")
-            {
+            else if (objeto.accion === "tiempo_agotado") {
                 claseAlerta = "alerta-error";
             }
 
             mostrarMensajeMovimiento(objeto.mensaje, claseAlerta);
 
-            if (objeto.partida && objeto.partida.finalizada)
-            {
+            if (objeto.partida && objeto.partida.finalizada) {
                 mostrarResultadoFinal(objeto.partida, objeto.mensaje, objeto.guardadaBD);
             }
-            else
-            {
+            else {
                 cambiarEstadoControles(false);
                 enfocarIngresoLetra();
             }
         }
-        else if (peticion.readyState == 4)
-        {
+        else if (peticion.readyState == 4) {
             peticionEnCurso = false;
             cambiarEstadoControles(false);
             mostrarMensajeMovimiento("Error de comunicacion con el servidor (HTTP " + peticion.status + ").", "alerta-error");
@@ -209,17 +167,13 @@ function enviarLetraArriesgada(letra)
     }
 }
 
-// Abandono voluntario con confirmacion (RF-13)
-function abandonarPartida()
-{
-    if (partidaFinalizada || peticionEnCurso)
-    {
+function abandonarPartida() {
+    if (partidaFinalizada || peticionEnCurso) {
         return;
     }
 
     var confirma = window.confirm("¿Seguro que queres abandonar la partida? Se considerara perdida y no acumulara puntos.");
-    if (!confirma)
-    {
+    if (!confirma) {
         return;
     }
 
@@ -233,33 +187,27 @@ function abandonarPartida()
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send("confirmar=1");
 
-    function procesarAbandono()
-    {
-        if ((peticion.readyState == 4) && (peticion.status == 200))
-        {
+    function procesarAbandono() {
+        if ((peticion.readyState == 4) && (peticion.status == 200)) {
             peticionEnCurso = false;
             var objeto = JSON.parse(peticion.responseText);
 
-            if (objeto.sesionExpirada)
-            {
+            if (objeto.sesionExpirada) {
                 window.location.href = "../index.php";
                 return;
             }
 
-            if (objeto.ok && objeto.partida)
-            {
+            if (objeto.ok && objeto.partida) {
                 actualizarInterfazPartida(objeto.partida);
                 mostrarMensajeMovimiento(objeto.mensaje, "alerta-error");
                 mostrarResultadoFinal(objeto.partida, objeto.mensaje, objeto.guardadaBD);
             }
-            else
-            {
+            else {
                 mostrarMensajeMovimiento(objeto.mensaje || "No se pudo abandonar la partida.", "alerta-error");
                 cambiarEstadoControles(false);
             }
         }
-        else if (peticion.readyState == 4)
-        {
+        else if (peticion.readyState == 4) {
             peticionEnCurso = false;
             cambiarEstadoControles(false);
             mostrarMensajeMovimiento("Error de comunicacion con el servidor (HTTP " + peticion.status + ").", "alerta-error");
@@ -267,9 +215,7 @@ function abandonarPartida()
     }
 }
 
-// Temporizador visual: cuenta segundos en cliente y consulta al servidor al llegar al limite
-function iniciarTemporizadorVisual(partida)
-{
+function iniciarTemporizadorVisual(partida) {
     detenerTemporizador();
 
     tiempoLimiteSeg = partida.tiempoLimiteSeg;
@@ -277,91 +223,73 @@ function iniciarTemporizadorVisual(partida)
 
     actualizarVisualizacionTiempo();
 
-    if (tiempoLimiteSeg === null)
-    {
+    if (tiempoLimiteSeg === null) {
         ocultaElemento("contenedorBarraTiempo");
         return;
     }
 
     muestraElemento("contenedorBarraTiempo");
 
-    temporizadorId = window.setInterval(function ()
-    {
-        if (partidaFinalizada)
-        {
+    temporizadorId = window.setInterval(function () {
+        if (partidaFinalizada) {
             detenerTemporizador();
             return;
         }
 
         tiempoTranscurridoSeg++;
-        if (tiempoTranscurridoSeg > tiempoLimiteSeg)
-        {
+        if (tiempoTranscurridoSeg > tiempoLimiteSeg) {
             tiempoTranscurridoSeg = tiempoLimiteSeg;
         }
 
         actualizarVisualizacionTiempo();
 
-        if (tiempoTranscurridoSeg >= tiempoLimiteSeg && !peticionEnCurso)
-        {
+        if (tiempoTranscurridoSeg >= tiempoLimiteSeg && !peticionEnCurso) {
             notificarTiempoAgotadoServidor();
         }
     }, 1000);
 }
 
-function detenerTemporizador()
-{
-    if (temporizadorId !== null)
-    {
+function detenerTemporizador() {
+    if (temporizadorId !== null) {
         window.clearInterval(temporizadorId);
         temporizadorId = null;
     }
 }
 
-function actualizarVisualizacionTiempo()
-{
+function actualizarVisualizacionTiempo() {
     const spanTranscurrido = document.getElementById("infoTiempoTranscurrido");
     const spanRestante = document.getElementById("infoTiempoRestante");
     const barra = document.getElementById("barraTiempo");
 
-    if (tiempoLimiteSeg === null)
-    {
-        if (spanTranscurrido)
-        {
+    if (tiempoLimiteSeg === null) {
+        if (spanTranscurrido) {
             spanTranscurrido.textContent = "Sin limite";
         }
-        if (spanRestante)
-        {
+        if (spanRestante) {
             spanRestante.textContent = "Sin limite";
         }
         return;
     }
 
     var restante = tiempoLimiteSeg - tiempoTranscurridoSeg;
-    if (restante < 0)
-    {
+    if (restante < 0) {
         restante = 0;
     }
 
-    if (spanTranscurrido)
-    {
+    if (spanTranscurrido) {
         spanTranscurrido.textContent = formatearTiempo(tiempoTranscurridoSeg) + " / " + formatearTiempo(tiempoLimiteSeg);
     }
-    if (spanRestante)
-    {
+    if (spanRestante) {
         spanRestante.textContent = formatearTiempo(restante);
     }
-    if (barra)
-    {
+    if (barra) {
         barra.max = tiempoLimiteSeg;
         barra.value = tiempoTranscurridoSeg;
     }
 }
 
-// Consulta al servidor para confirmar el vencimiento del tiempo (autoridad del servidor)
-function notificarTiempoAgotadoServidor()
-{
-    if (partidaFinalizada || peticionEnCurso)
-    {
+function notificarTiempoAgotadoServidor() {
+    if (partidaFinalizada || peticionEnCurso) {
         return;
     }
 
@@ -374,54 +302,43 @@ function notificarTiempoAgotadoServidor()
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send("finTiempo=1");
 
-    function procesarFinPorTiempo()
-    {
-        if ((peticion.readyState == 4) && (peticion.status == 200))
-        {
+    function procesarFinPorTiempo() {
+        if ((peticion.readyState == 4) && (peticion.status == 200)) {
             peticionEnCurso = false;
             var objeto = JSON.parse(peticion.responseText);
 
-            if (objeto.sesionExpirada)
-            {
+            if (objeto.sesionExpirada) {
                 detenerTemporizador();
                 window.location.href = "../index.php";
                 return;
             }
 
-            if (objeto.ok && objeto.partida)
-            {
+            if (objeto.ok && objeto.partida) {
                 actualizarInterfazPartida(objeto.partida);
 
-                if (objeto.partida.finalizada)
-                {
+                if (objeto.partida.finalizada) {
                     detenerTemporizador();
                     mostrarMensajeMovimiento(objeto.mensaje, "alerta-error");
                     mostrarResultadoFinal(objeto.partida, objeto.mensaje, objeto.guardadaBD);
                 }
-                else
-                {
-                    // El servidor indica que aun queda tiempo (diferencia de milisegundos): resincroniza
+                else {
                     tiempoTranscurridoSeg = objeto.partida.tiempoTranscurridoSeg;
                     actualizarVisualizacionTiempo();
                     cambiarEstadoControles(false);
                 }
             }
-            else
-            {
+            else {
                 cambiarEstadoControles(false);
             }
         }
-        else if (peticion.readyState == 4)
-        {
+        else if (peticion.readyState == 4) {
             peticionEnCurso = false;
             cambiarEstadoControles(false);
         }
     }
 }
 
-// Actualiza todos los indicadores visibles de la partida en el DOM (RF-12)
-function actualizarInterfazPartida(partida)
-{
+function actualizarInterfazPartida(partida) {
     document.getElementById("infoCategoria").textContent = partida.categoria;
     document.getElementById("infoDificultad").textContent =
         capitalizarTexto(partida.nivel) + " (x" + partida.multiplicador + ")";
@@ -434,63 +351,49 @@ function actualizarInterfazPartida(partida)
     tiempoTranscurridoSeg = partida.tiempoTranscurridoSeg;
     actualizarVisualizacionTiempo();
 
-    // Renderizado de las casillas de la palabra enmascarada
     const contenedorMascara = document.getElementById("contenedorMascara");
     var htmlMascara = "";
-    for (var i = 0; i < partida.mascara.length; i++)
-    {
+    for (var i = 0; i < partida.mascara.length; i++) {
         var caracter = partida.mascara[i];
         var claseCasilla = (caracter === "*") ? "casilla-letra oculta" : "casilla-letra descubierta";
         htmlMascara += "<span class=\"" + claseCasilla + "\">" + escaparHTML(caracter) + "</span>";
     }
     contenedorMascara.innerHTML = htmlMascara;
 
-    // Lista de letras arriesgadas
     const contenedorArriesgadas = document.getElementById("listaLetrasArriesgadas");
-    if (partida.letrasArriesgadas.length === 0)
-    {
+    if (partida.letrasArriesgadas.length === 0) {
         contenedorArriesgadas.innerHTML = "<span class=\"texto-ayuda\">Ninguna todavia.</span>";
     }
-    else
-    {
+    else {
         var htmlLetras = "";
-        for (var j = 0; j < partida.letrasArriesgadas.length; j++)
-        {
+        for (var j = 0; j < partida.letrasArriesgadas.length; j++) {
             htmlLetras += "<span class=\"etiqueta-letra\">" + escaparHTML(partida.letrasArriesgadas[j]) + "</span>";
         }
         contenedorArriesgadas.innerHTML = htmlLetras;
     }
 
-    // Marca visualmente en el teclado virtual las letras ya arriesgadas o descubiertas por pista
-    for (var k = 0; k < ALFABETO.length; k++)
-    {
+    for (var k = 0; k < ALFABETO.length; k++) {
         var letra = ALFABETO[k];
         var tecla = document.getElementById("tecla_" + letra);
-        if (!tecla)
-        {
+        if (!tecla) {
             continue;
         }
         var yaUsada = (partida.letrasArriesgadas.indexOf(letra) !== -1) ||
-                      (partida.mascara.indexOf(letra) !== -1);
-        if (yaUsada || partida.finalizada)
-        {
+            (partida.mascara.indexOf(letra) !== -1);
+        if (yaUsada || partida.finalizada) {
             tecla.disabled = true;
-            if (!tecla.classList.contains("usada"))
-            {
+            if (!tecla.classList.contains("usada")) {
                 tecla.classList.add("usada");
             }
         }
-        else
-        {
+        else {
             tecla.disabled = false;
             tecla.classList.remove("usada");
         }
     }
 }
 
-// Presenta el resultado final cuando la partida termina (RF-15, RF-16, RF-17, A-01, A-02, A-20)
-function mostrarResultadoFinal(partida, mensajeAdicional, guardadaBD)
-{
+function mostrarResultadoFinal(partida, mensajeAdicional, guardadaBD) {
     partidaFinalizada = true;
     detenerTemporizador();
     cambiarEstadoControles(true);
@@ -503,34 +406,27 @@ function mostrarResultadoFinal(partida, mensajeAdicional, guardadaBD)
     const avisoPersistencia = document.getElementById("avisoPersistenciaFinal");
 
     var textoResultado = "";
-    if (partida.resultado === "ganada")
-    {
+    if (partida.resultado === "ganada") {
         textoResultado = "¡Ganaste la partida!";
     }
-    else if (partida.resultado === "empate")
-    {
+    else if (partida.resultado === "empate") {
         textoResultado = "La partida termino en empate.";
     }
-    else if (partida.resultado === "abandonada")
-    {
+    else if (partida.resultado === "abandonada") {
         textoResultado = "Partida abandonada (se considera perdida).";
     }
-    else
-    {
+    else {
         textoResultado = "Perdiste la partida.";
     }
 
     var motivoTexto = "";
-    if (partida.motivoFin === "tiempo")
-    {
+    if (partida.motivoFin === "tiempo") {
         motivoTexto = "Se agoto el tiempo limite. ";
     }
-    else if (partida.motivoFin === "completa")
-    {
+    else if (partida.motivoFin === "completa") {
         motivoTexto = "Se completaron todas las letras de la palabra. ";
     }
-    else if (partida.motivoFin === "abandono")
-    {
+    else if (partida.motivoFin === "abandono") {
         motivoTexto = "Decidiste abandonar la partida en curso. ";
     }
 
@@ -542,27 +438,22 @@ function mostrarResultadoFinal(partida, mensajeAdicional, guardadaBD)
 
     palabraEl.textContent = partida.palabraRevelada ? partida.palabraRevelada.toUpperCase() : "";
 
-    if (partida.resultado === "ganada" || partida.resultado === "empate")
-    {
+    if (partida.resultado === "ganada" || partida.resultado === "empate") {
         puntajeEl.textContent = "Obtuviste " + partida.puntajePartida +
             " punto(s) en la partida y acumulaste " + partida.puntajeSumado +
             " punto(s) en la base de datos (dificultad " + partida.nivel + " x" + partida.multiplicador + ").";
     }
-    else
-    {
+    else {
         puntajeEl.textContent = "Obtuviste " + partida.puntajePartida +
             " acierto(s), pero al no ganar ni empatar acumulas 0 puntos en la base de datos.";
     }
 
-    if (avisoPersistencia)
-    {
-        if (guardadaBD === false)
-        {
+    if (avisoPersistencia) {
+        if (guardadaBD === false) {
             avisoPersistencia.className = "alerta alerta-error";
             avisoPersistencia.textContent = "Atencion: no se pudo confirmar el guardado de la partida en la base de datos.";
         }
-        else
-        {
+        else {
             avisoPersistencia.className = "alerta alerta-exito";
             avisoPersistencia.textContent = "Los datos de la partida y tu puntaje acumulado fueron guardados en la base de datos.";
         }
@@ -571,26 +462,21 @@ function mostrarResultadoFinal(partida, mensajeAdicional, guardadaBD)
 
     muestraElemento("panelResultadoFinal");
 
-    // Carga automaticamente el Top 10 actualizado luego del resultado (RF-17)
     cargarTop10Ajax();
 }
 
-// Consulta el Top 10 actualizado mediante XMLHttpRequest + JSON y lo dibuja en la tabla
-function cargarTop10Ajax()
-{
+function cargarTop10Ajax() {
     const estadoCarga = document.getElementById("estadoCargaTop10");
     const cuerpo = document.getElementById("cuerpoTop10Partida");
     const resumen = document.getElementById("resumenPosicionTop10");
 
     muestraElemento("panelTop10Partida");
-    if (estadoCarga)
-    {
+    if (estadoCarga) {
         estadoCarga.className = "alerta alerta-info";
         estadoCarga.textContent = "Cargando tabla de posiciones...";
         muestraElemento("estadoCargaTop10");
     }
-    if (cuerpo)
-    {
+    if (cuerpo) {
         cuerpo.innerHTML = "";
     }
 
@@ -600,54 +486,42 @@ function cargarTop10Ajax()
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(null);
 
-    function procesarTop10()
-    {
-        if ((peticion.readyState == 4) && (peticion.status == 200))
-        {
+    function procesarTop10() {
+        if ((peticion.readyState == 4) && (peticion.status == 200)) {
             var objeto = JSON.parse(peticion.responseText);
 
-            if (objeto.sesionExpirada)
-            {
+            if (objeto.sesionExpirada) {
                 window.location.href = "../index.php";
                 return;
             }
 
-            if (objeto.ok && objeto.top10)
-            {
+            if (objeto.ok && objeto.top10) {
                 ocultaElemento("estadoCargaTop10");
 
                 const puntajeNav = document.getElementById("puntajeNav");
-                if (puntajeNav && typeof objeto.puntajeAcumuladoActual === "number")
-                {
+                if (puntajeNav && typeof objeto.puntajeAcumuladoActual === "number") {
                     puntajeNav.textContent = objeto.puntajeAcumuladoActual;
                 }
 
-                if (resumen)
-                {
-                    if (objeto.estaEnTop10 && objeto.puestoUsuarioActual !== null)
-                    {
+                if (resumen) {
+                    if (objeto.estaEnTop10 && objeto.puestoUsuarioActual !== null) {
                         resumen.textContent = "Tu puntaje acumulado actual es " +
                             objeto.puntajeAcumuladoActual + " punto(s) (puesto #" +
                             objeto.puestoUsuarioActual + " en el Top 10).";
                     }
-                    else
-                    {
+                    else {
                         resumen.textContent = "Tu puntaje acumulado actual es " +
                             objeto.puntajeAcumuladoActual + " punto(s) (actualmente fuera del Top 10).";
                     }
                 }
 
-                if (cuerpo)
-                {
-                    if (objeto.top10.length === 0)
-                    {
+                if (cuerpo) {
+                    if (objeto.top10.length === 0) {
                         cuerpo.innerHTML = "<tr><td colspan=\"3\">Todavia no hay jugadores registrados.</td></tr>";
                     }
-                    else
-                    {
+                    else {
                         var htmlFilas = "";
-                        for (var i = 0; i < objeto.top10.length; i++)
-                        {
+                        for (var i = 0; i < objeto.top10.length; i++) {
                             var fila = objeto.top10[i];
                             var claseFila = fila.esUsuarioActual ? " class=\"fila-destacada\"" : "";
                             var sufijo = fila.esUsuarioActual ? " (Vos)" : "";
@@ -662,17 +536,14 @@ function cargarTop10Ajax()
                     }
                 }
             }
-            else if (estadoCarga)
-            {
+            else if (estadoCarga) {
                 estadoCarga.className = "alerta alerta-error";
                 estadoCarga.textContent = objeto.mensaje || "No se pudo cargar el Top 10.";
                 muestraElemento("estadoCargaTop10");
             }
         }
-        else if (peticion.readyState == 4)
-        {
-            if (estadoCarga)
-            {
+        else if (peticion.readyState == 4) {
+            if (estadoCarga) {
                 estadoCarga.className = "alerta alerta-error";
                 estadoCarga.textContent = "Error al obtener el Top 10 (HTTP " + peticion.status + ").";
                 muestraElemento("estadoCargaTop10");
@@ -681,11 +552,9 @@ function cargarTop10Ajax()
     }
 }
 
-function mostrarMensajeMovimiento(texto, claseAlerta)
-{
+function mostrarMensajeMovimiento(texto, claseAlerta) {
     const divMsg = document.getElementById("mensajeMovimiento");
-    if (!divMsg)
-    {
+    if (!divMsg) {
         return;
     }
     divMsg.className = "alerta " + claseAlerta;
@@ -693,39 +562,31 @@ function mostrarMensajeMovimiento(texto, claseAlerta)
     muestraElemento("mensajeMovimiento");
 }
 
-function cambiarEstadoControles(deshabilitar)
-{
+function cambiarEstadoControles(deshabilitar) {
     const txtLetra = document.getElementById("txtLetra");
     const btnArriesgar = document.getElementById("btnArriesgar");
     const btnAbandonar = document.getElementById("btnAbandonar");
 
-    if (txtLetra)
-    {
+    if (txtLetra) {
         txtLetra.disabled = deshabilitar;
     }
-    if (btnArriesgar)
-    {
+    if (btnArriesgar) {
         btnArriesgar.disabled = deshabilitar;
     }
-    if (btnAbandonar)
-    {
+    if (btnAbandonar) {
         btnAbandonar.disabled = deshabilitar;
     }
 }
 
-function enfocarIngresoLetra()
-{
+function enfocarIngresoLetra() {
     const txtLetra = document.getElementById("txtLetra");
-    if (txtLetra && !txtLetra.disabled)
-    {
+    if (txtLetra && !txtLetra.disabled) {
         txtLetra.focus();
     }
 }
 
-function capitalizarTexto(texto)
-{
-    if (!texto || texto.length === 0)
-    {
+function capitalizarTexto(texto) {
+    if (!texto || texto.length === 0) {
         return "";
     }
     return texto.charAt(0).toUpperCase() + texto.slice(1);

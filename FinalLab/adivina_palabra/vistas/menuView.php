@@ -1,8 +1,4 @@
 <?php
-/* Archivo: vistas/menuView.php
- * Vista principal del jugador autenticado: mensaje personalizado de bienvenida
- * (RF-05), control de partida activa (A-19) y configuracion de nueva partida (RF-06).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';
@@ -10,7 +6,6 @@ require_once __DIR__ . '/../dao/UsuarioDAO.php';
 require_once __DIR__ . '/../dao/CategoriaDAO.php';
 require_once __DIR__ . '/../dao/PartidaDAO.php';
 
-// Acceso exclusivo para jugadores autenticados (RF-21)
 Sesion::exigirJugador(false, '../index.php', 'adminIndexView.php');
 
 $idUsuario = Sesion::getIdUsuario();
@@ -20,7 +15,6 @@ $categoriaElegida = (int) Sesion::obtenerFlash('menu_cat', 0);
 $nivelElegido = (string) Sesion::obtenerFlash('menu_nivel', 'baja');
 $tiempoElegido = (string) Sesion::obtenerFlash('menu_tiempo', '0');
 
-// Revisa si queda una partida activa sin finalizar en sesion (A-19)
 $partidaEnCurso = Partida::cargarDesdeSession();
 if ($partidaEnCurso !== null && $partidaEnCurso->estaFinalizada())
 {
@@ -28,7 +22,6 @@ if ($partidaEnCurso !== null && $partidaEnCurso->estaFinalizada())
     $partidaEnCurso = null;
 }
 
-// Si la partida en curso tenia tiempo y ya vencio en servidor, se cierra automaticamente (A-02 Opcion A)
 if ($partidaEnCurso !== null && $partidaEnCurso->estaTiempoVencido())
 {
     $partidaEnCurso->finalizarPorTiempo();

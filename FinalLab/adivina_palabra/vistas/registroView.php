@@ -1,8 +1,4 @@
 <?php
-/* Archivo: vistas/registroView.php
- * Vista de registro de nuevos jugadores con validacion en cliente y verificacion
- * AJAX de disponibilidad del nombre de usuario (RF-01, RF-02, A-11, A-16).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 

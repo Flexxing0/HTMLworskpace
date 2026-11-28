@@ -1,8 +1,4 @@
 <?php
-/* Archivo: modelo/Usuario.php
- * Entidad Usuario y validaciones de formato del modelo (A-11).
- * Las operaciones de acceso a la base de datos se ubican en dao/UsuarioDAO.php.
- */
 
 require_once __DIR__ . '/../db/config.php';
 
@@ -85,7 +81,6 @@ class Usuario
         $this->fechaRegistro = $fechaRegistro;
     }
 
-    // Validacion de formato del nombre de usuario en el servidor (A-11)
     public static function validarNombreUsuario($nombreUsuario)
     {
         $nombre = trim($nombreUsuario);

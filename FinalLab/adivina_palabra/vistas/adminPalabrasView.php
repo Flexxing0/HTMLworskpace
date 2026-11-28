@@ -1,8 +1,4 @@
 <?php
-/* Archivo: vistas/adminPalabrasView.php
- * Vista del ABM de palabras para el administrador (RF-20, RF-21, A-06, A-07, A-14, A-15).
- * Envia acciones POST a controladores/palabraController.php y filtros GET a esta vista.
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/CategoriaDAO.php';
@@ -16,7 +12,6 @@ $idEditar = (int) Sesion::obtenerFlash('pal_id_editar', 0);
 $palabraForm = (string) Sesion::obtenerFlash('pal_texto', '');
 $categoriaForm = (int) Sesion::obtenerFlash('pal_cat', 0);
 
-// Filtros del listado (GET)
 $filtroCategoria = isset($_GET['cmbFiltroCategoria']) ? (int) $_GET['cmbFiltroCategoria'] : 0;
 $filtroDificultad = isset($_GET['cmbFiltroDificultad']) ? trim($_GET['cmbFiltroDificultad']) : '';
 if (!in_array($filtroDificultad, array('', 'baja', 'media', 'alta'), true))

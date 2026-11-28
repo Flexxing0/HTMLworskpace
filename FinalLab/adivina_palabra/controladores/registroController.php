@@ -1,7 +1,4 @@
 <?php
-/* Archivo: controladores/registroController.php
- * Controlador POST de registro de nuevos jugadores (RF-01, A-11, A-16).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/UsuarioDAO.php';

@@ -1,16 +1,11 @@
 <?php
-/* Archivo: dao/UsuarioDAO.php
- * Data Access Object para la tabla usuarios: verificacion de disponibilidad,
- * registro, autenticacion (jugador y administrador), estadisticas de bienvenida
- * y ranking Top 10.
- */
 
 require_once __DIR__ . '/../db/conexion.php';
 require_once __DIR__ . '/../modelo/Usuario.php';
 
 class UsuarioDAO
 {
-    // Verifica si un nombre de usuario ya existe en la BD o esta reservado
+
     public static function existeNombreUsuario($nombreUsuario)
     {
         $nombre = trim($nombreUsuario);
@@ -38,7 +33,6 @@ class UsuarioDAO
         return $existe;
     }
 
-    // Alta de nuevo jugador en BD (RF-01, A-11, A-16)
     public static function registrar($nombreUsuario, $correo, $passwordPlano)
     {
         $valUsuario = Usuario::validarNombreUsuario($nombreUsuario);
@@ -93,7 +87,6 @@ class UsuarioDAO
         }
     }
 
-    // Autentica tanto al administrador (A-12) como a jugadores registrados (RF-03)
     public static function autenticar($nombreUsuario, $passwordPlano)
     {
         $nombre = trim($nombreUsuario);
@@ -102,7 +95,6 @@ class UsuarioDAO
             return array('ok' => false, 'mensaje' => 'Completa usuario y contraseña.');
         }
 
-        // Caso 1: Usuario administrador definido en db/config.php
         if (mb_strtolower($nombre, 'UTF-8') === mb_strtolower(ADMIN_USUARIO, 'UTF-8'))
         {
             if (password_verify($passwordPlano, ADMIN_PASSWORD_HASH))
@@ -117,7 +109,6 @@ class UsuarioDAO
             return array('ok' => false, 'mensaje' => 'Usuario o contraseña incorrectos.');
         }
 
-        // Caso 2: Jugador en tabla usuarios
         $con = Conexion::conectar();
         $query = 'SELECT id, nombre_usuario, correo, password_hash, puntaje_acumulado, fecha_registro
                   FROM usuarios
@@ -160,7 +151,6 @@ class UsuarioDAO
         );
     }
 
-    // Calcula mensaje personalizado de bienvenida (RF-05, A-08, A-09)
     public static function obtenerEstadisticasBienvenida($idUsuario)
     {
         $id = (int) $idUsuario;
@@ -214,7 +204,6 @@ class UsuarioDAO
         $porcentaje = (int) round(($ganadas / $totalPartidas) * 100);
         $dias = (int) $regi->dias_desde_ultima;
 
-        // Formato relativo segun decision A-09 (N = 30 dias)
         if ($dias <= 0)
         {
             $textoUltimoJuego = 'hoy';
@@ -259,7 +248,6 @@ class UsuarioDAO
         );
     }
 
-    // Obtiene el Top 10 ordenado por puntaje DESC y nombre ASC en empate (RF-17, A-13)
     public static function obtenerTop10()
     {
         $con = Conexion::conectar();

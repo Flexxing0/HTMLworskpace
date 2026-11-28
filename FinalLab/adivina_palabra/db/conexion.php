@@ -1,7 +1,4 @@
 <?php
-/* Archivo: db/conexion.php
- * Centraliza la conexion MySQLi orientada a objetos usando db/config.php.
- */
 
 require_once __DIR__ . '/config.php';
 
@@ -19,7 +16,7 @@ class Conexion
         }
         catch (mysqli_sql_exception $e)
         {
-            // No se exponen credenciales ni detalles tecnicos al cliente (Unidad 7)
+            
             throw new RuntimeException('No se pudo establecer la conexion con la base de datos.');
         }
     }

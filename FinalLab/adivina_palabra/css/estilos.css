@@ -1,9 +1,3 @@
-/* Archivo: css/estilos.css
- * Hoja de estilos externa para Adivine la palabra (B).
- * Basada en la estetica de los parciales previos (tarjetas con acento verde,
- * tablas claras y footer oscuro), adaptada a pantallas de distintos tamanos.
- */
-
 * {
     box-sizing: border-box;
 }

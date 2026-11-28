@@ -1,7 +1,4 @@
 <?php
-/* Archivo: vistas/adminIndexView.php
- * Vista principal del usuario administrador (RF-18, RF-21, A-12).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../dao/CategoriaDAO.php';

@@ -1,9 +1,4 @@
 <?php
-/* Archivo: modelo/Categoria.php
- * Entidad Categoria y validacion de formato del modelo.
- * Las operaciones de base de datos se ubican en dao/CategoriaDAO.php.
- */
-
 class Categoria
 {
     private $id;
@@ -59,7 +54,6 @@ class Categoria
         $this->cantidadPalabrasActivas = (int) $cantidad;
     }
 
-    // Valida el formato del nombre de categoria en el servidor
     public static function validarNombre($nombreRaw)
     {
         $nombre = trim($nombreRaw);

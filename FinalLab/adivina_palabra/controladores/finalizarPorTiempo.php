@@ -1,9 +1,4 @@
 <?php
-/* Archivo: controladores/finalizarPorTiempo.php
- * Controlador AJAX (POST) invocado cuando el temporizador visual llega al limite.
- * El servidor valida independientemente que el tiempo haya expirado realmente
- * antes de cerrar la partida (autoridad del servidor, A-02 Opcion A).
- */
 
 require_once __DIR__ . '/../modelo/Sesion.php';
 require_once __DIR__ . '/../modelo/Partida.php';
