@@ -55,7 +55,7 @@ function verificarUsuarioDisponible()
 
     var parametros = "nombreUsuario=" + encodeURIComponent(nombre);
     var peticion = new XMLHttpRequest();
-    peticion.open("POST", "ajax/verificarUsuario.php", true);
+    peticion.open("POST", "../controladores/verificarUsuario.php", true);
     peticion.onreadystatechange = procesarVerificacion;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(parametros);

@@ -1,0 +1,3 @@
+# Archivo: dao/.htaccess
+# Bloquea el acceso HTTP directo a las clases DAO (Unidad 7)
+Require all denied

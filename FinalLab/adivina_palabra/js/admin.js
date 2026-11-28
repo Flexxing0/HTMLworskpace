@@ -1,9 +1,9 @@
 /* Archivo: js/admin.js
  * Validaciones del lado del cliente y confirmaciones de baja logica para el
- * panel de administracion (admin/categorias.php y admin/palabras.php).
+ * panel de administracion (vistas/adminCategoriasView.php y vistas/adminPalabrasView.php).
  */
 
-// Valida alta y modificacion de categorias (admin/categorias.php)
+// Valida alta y modificacion de categorias (vistas/adminCategoriasView.php)
 function validarCategoria()
 {
     const txtNombre = document.getElementById("txtNombreCategoria");
@@ -33,7 +33,7 @@ function confirmarBajaCategoria(formulario)
     );
 }
 
-// Valida alta y modificacion de palabras (admin/palabras.php, A-06 y A-07)
+// Valida alta y modificacion de palabras (vistas/adminPalabrasView.php, A-06 y A-07)
 function validarPalabra()
 {
     const cmbCategoria = document.getElementById("cmbCategoriaPalabra");

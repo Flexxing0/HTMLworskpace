@@ -1,0 +1,3 @@
+# Archivo: db/.htaccess
+# Bloquea el acceso HTTP directo a la configuracion y conexion de BD (Unidad 7)
+Require all denied

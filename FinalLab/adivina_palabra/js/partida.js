@@ -1,5 +1,5 @@
 /* Archivo: js/partida.js
- * Logica del lado del cliente para la pantalla de juego (partida.php).
+ * Logica del lado del cliente para la pantalla de juego (vistas/partidaView.php).
  * Toda comunicacion con el servidor se realiza con XMLHttpRequest + JSON
  * (Unidad 6) y el temporizador local es solo visual (el servidor valida el tiempo).
  */
@@ -50,7 +50,7 @@ function construirTecladoVirtual()
 function cargarEstadoPartida()
 {
     var peticion = new XMLHttpRequest();
-    peticion.open("POST", "ajax/estadoPartida.php", true);
+    peticion.open("POST", "../controladores/estadoPartida.php", true);
     peticion.onreadystatechange = procesarEstadoInicial;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(null);
@@ -63,13 +63,13 @@ function cargarEstadoPartida()
 
             if (objeto.sesionExpirada)
             {
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
                 return;
             }
 
             if (objeto.sinPartida)
             {
-                window.location.href = "menu.php";
+                window.location.href = "menuView.php";
                 return;
             }
 
@@ -125,7 +125,7 @@ function arriesgarDesdeTecla(letra)
     enviarLetraArriesgada(letra);
 }
 
-// Envia la letra arriesgada por AJAX POST a ajax/arriesgarLetra.php
+// Envia la letra arriesgada por AJAX POST a controladores/arriesgarLetra.php
 function enviarLetraArriesgada(letra)
 {
     if (partidaFinalizada || peticionEnCurso)
@@ -138,7 +138,7 @@ function enviarLetraArriesgada(letra)
 
     var parametros = "letra=" + encodeURIComponent(letra);
     var peticion = new XMLHttpRequest();
-    peticion.open("POST", "ajax/arriesgarLetra.php", true);
+    peticion.open("POST", "../controladores/arriesgarLetra.php", true);
     peticion.onreadystatechange = procesarRespuestaLetra;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(parametros);
@@ -153,14 +153,14 @@ function enviarLetraArriesgada(letra)
             if (objeto.sesionExpirada)
             {
                 detenerTemporizador();
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
                 return;
             }
 
             if (objeto.sinPartida)
             {
                 detenerTemporizador();
-                window.location.href = "menu.php";
+                window.location.href = "menuView.php";
                 return;
             }
 
@@ -228,7 +228,7 @@ function abandonarPartida()
     detenerTemporizador();
 
     var peticion = new XMLHttpRequest();
-    peticion.open("POST", "ajax/abandonarPartida.php", true);
+    peticion.open("POST", "../controladores/abandonarPartida.php", true);
     peticion.onreadystatechange = procesarAbandono;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send("confirmar=1");
@@ -242,7 +242,7 @@ function abandonarPartida()
 
             if (objeto.sesionExpirada)
             {
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
                 return;
             }
 
@@ -369,7 +369,7 @@ function notificarTiempoAgotadoServidor()
     cambiarEstadoControles(true);
 
     var peticion = new XMLHttpRequest();
-    peticion.open("POST", "ajax/finalizarPorTiempo.php", true);
+    peticion.open("POST", "../controladores/finalizarPorTiempo.php", true);
     peticion.onreadystatechange = procesarFinPorTiempo;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send("finTiempo=1");
@@ -384,7 +384,7 @@ function notificarTiempoAgotadoServidor()
             if (objeto.sesionExpirada)
             {
                 detenerTemporizador();
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
                 return;
             }
 
@@ -595,7 +595,7 @@ function cargarTop10Ajax()
     }
 
     var peticion = new XMLHttpRequest();
-    peticion.open("POST", "ajax/obtenerTop10.php", true);
+    peticion.open("POST", "../controladores/obtenerTop10.php", true);
     peticion.onreadystatechange = procesarTop10;
     peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     peticion.send(null);
@@ -608,7 +608,7 @@ function cargarTop10Ajax()
 
             if (objeto.sesionExpirada)
             {
-                window.location.href = "index.php";
+                window.location.href = "../index.php";
                 return;
             }
 

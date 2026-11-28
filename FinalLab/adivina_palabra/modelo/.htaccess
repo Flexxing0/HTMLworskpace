@@ -1,0 +1,3 @@
+# Archivo: modelo/.htaccess
+# Bloquea el acceso HTTP directo a las clases del modelo (Unidad 7)
+Require all denied

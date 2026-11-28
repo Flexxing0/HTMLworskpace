@@ -1,3 +1,0 @@
-# Archivo: config/.htaccess
-# Bloquea el acceso HTTP directo a los archivos de configuracion (Apache 2.4 - WAMP)
-Require all denied
